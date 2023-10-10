@@ -1,71 +1,43 @@
 ###################
-What is CodeIgniter
+BOOK MANAGEMENT SYSTEM
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+The Book Management System (BMS) is a comprehensive web application built using HTML, CSS, SCSS, JavaScript, and PHP (CodeIgniter 3). It serves as a robust toolkit for individuals and organizations managing books, allowing for efficient book cataloging and management.
 
 *******************
 Release Information
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+This repository contains the latest codebase for ongoing development. To access the stable release, please visit the `Book Management System Downloads <https://your-download-link-here>`_ page.
 
 **************************
 Changelog and New Features
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+For details on the latest updates and new features, refer to the `user guide change log <https://your-changelog-link-here>`_.
 
 *******************
 Server Requirements
 *******************
 
-PHP version 5.6 or newer is recommended.
-
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+The Book Management System requires PHP version 5.6 or newer for optimal performance and security. While it may function on PHP 5.3.7, it is strongly recommended to use a more recent PHP version to ensure robust security, performance, and access to the latest features.
 
 ************
 Installation
 ************
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
-
-*******
-License
-*******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+To install the Book Management System, follow the instructions provided in the `installation section <https://your-installation-guide-link-here>`_ of the user guide.
 
 *********
 Resources
 *********
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+-  `User Guide <https://your-user-guide-link-here>`_
+-  `Contributing Guide <https://your-contributing-guide-link-here>`_
+-  `Language File Translations <https://your-translation-repo-link-here>`_
+-  `Community Forums <http://your-community-forums-link-here>`_
+-  `Community Wiki <https://your-community-wiki-link-here>`_
+-  `Community Slack Channel <https://your-slack-channel-link-here>`_
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+Please report any security issues to our `Security Panel <mailto:security@your-book-management-system.com>`_ or through our `HackerOne page <https://hackerone.com/your-book-management-system>`_. We appreciate your vigilance in keeping our system secure.
 
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
