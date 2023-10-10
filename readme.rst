@@ -16,11 +16,6 @@ Changelog and New Features
 
 For details on the latest updates and new features, refer to the `user guide change log <https://your-changelog-link-here>`_.
 
-*******************
-Server Requirements
-*******************
-
-The Book Management System requires PHP version 5.6 or newer for optimal performance and security. While it may function on PHP 5.3.7, it is strongly recommended to use a more recent PHP version to ensure robust security, performance, and access to the latest features.
 
 ************
 Installation
