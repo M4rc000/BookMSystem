@@ -11,35 +11,22 @@ body {
 	height: 100vh;
 	background-color: rgb(29, 29, 29);
 }
-
-.container-login {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.forgot-container {
 	padding: 20px;
 	border-radius: 5px;
 	background-color: rgb(71, 68, 68);
 }
 
-.login-form {
+.forgot-form {
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 	gap: 0.5em;
-	padding: 10px;
 	color: white;
 }
 
-.forgot-password {
-	text-align: center;
-}
-
-a {
-	color: red;
-}
-
-.login-header {
+.header {
 	margin-bottom: 10px;
+	text-align: center;
 }
 
 form input {
@@ -49,21 +36,10 @@ form input {
 	background-color: transparent;
 }
 
-input::placeholder {
-	color: rgb(161, 161, 161);
-}
-
-.login-button {
+.forgot-button {
 	background-color: red;
 	color: white;
 	padding: 10px;
 	border-radius: 5px;
 	border: none;
-}
-
-.register-link {
-	color: red;
-}
-.register-link:hover {
-	color: rgb(174, 1, 1);
 }
