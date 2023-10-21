@@ -28,4 +28,18 @@ class Auth extends CI_Controller {
             $this->_login();
         }
 	}
+
+    public function registration(){
+        $data['title'] = 'Register Page';
+        $this->load->view('templates/auth_header', $data);
+        $this->load->view('auth/registration');
+        $this->load->view('templates/auth_footer');
+    }
+
+    public function forgotpassword(){
+        $data['title'] = 'Forgot Password Page';
+        $this->load->view('templates/auth_header', $data);
+        $this->load->view('auth/forgotpassword');
+        $this->load->view('templates/auth_footer');
+    }
 }
