@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2023 at 01:27 PM
+-- Generation Time: Oct 22, 2023 at 07:29 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -71,10 +71,23 @@ CREATE TABLE `user` (
   `username` varchar(10) NOT NULL,
   `email` varchar(128) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `place_of_birth` varchar(10) NOT NULL,
-  `date_of_birth` date NOT NULL,
-  `date_joined` date NOT NULL
+  `image` varchar(20) NOT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `place_of_birth` varchar(10) DEFAULT NULL,
+  `date_of_birth` varchar(15) DEFAULT NULL,
+  `date_joined` varchar(30) NOT NULL,
+  `is_active` int(2) NOT NULL,
+  `role_id` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `username`, `email`, `password`, `image`, `gender`, `place_of_birth`, `date_of_birth`, `date_joined`, `is_active`, `role_id`) VALUES
+(1, 'Marco', 'Prime', 'marcoantoniomadgaskar@gmail.com', '$2y$10$fBSRG6NDyZGRe', 'default.jpg', 'Male', '', '', '22-10-2023 10:49:21', 1, 1),
+(2, 'Robby', 'Robbs', 'robbyarsyadani@gmail.com', '$2y$10$5bo924uVR0Rkp', 'default.jpg', '', '', '', '22-10-2023 10:51:35', 1, 1),
+(3, 'Hansen', 'Hanz', 'Hansenhoswari@gmail.com', '$2y$10$EYlyliOHGqTb0', 'default.jpg', '', '', '', '22-10-2023 10:52:37', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -118,7 +131,7 @@ ALTER TABLE `submenu`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

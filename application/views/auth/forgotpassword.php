@@ -1,9 +1,9 @@
 <div class="container-scroller">
 	<div class="container-fluid page-body-wrapper full-page-wrapper">
-		<div class="content-wrapper d-flex align-items-center auth px-0">
+		<div class="content-wrapper d-flex align-items-center auth px-0" style="background-image: url('<?= $background; ?>');">
 			<div class="row w-100 mx-0">
 				<div class="col-lg-4 mx-auto">
-					<div class="container-forgot auth-form-light text-left py-5 px-4 px-sm-5">
+					<div class="container-forgot auth-form-light text-left py-5 px-4 px-sm-5 rounded-lg">
 						<h4>Forgot your password ?</h4>
 						<form class="pt-3">
 							<div class="form-group">
@@ -16,7 +16,7 @@
 							</div>
 							<div class="text-center mt-5 font-weight-light">
 								Don't have an account?
-								<a href="register.html" class="text-primary">Create</a>
+								<a href="<?= base_url('auth/registration'); ?>" class="text-primary">Create</a>
 							</div>
 						</form>
 					</div>
