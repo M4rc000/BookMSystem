@@ -8,26 +8,32 @@ class Auth extends CI_Controller {
         $this->load->library('form_validation');
     }
 	
-	public function index()
-	{
-		if ($this->session->userdata('email')) {
-            redirect('user');
-        }
+    public function index(){
+        $this->load->view('templates/header');
+        $this->load->view('admin/manage_user_role');
+        $this->load->view('templates/footer');
+    }
 
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+	// public function index()
+	// {
+	// 	if ($this->session->userdata('email')) {
+    //         redirect('user');
+    //     }
 
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Login Page';
-            $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
-            $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth/login',$data);
-            $this->load->view('templates/auth_footer');
-        } else {
-            // validasinya success
-            $this->_login();
-        }
-	}
+    //     $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+    //     $this->form_validation->set_rules('password', 'Password', 'trim|required');
+
+    //     if ($this->form_validation->run() == false) {
+    //         $data['title'] = 'Login Page';
+    //         $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
+    //         $this->load->view('templates/auth_header', $data);
+    //         $this->load->view('auth/login',$data);
+    //         $this->load->view('templates/auth_footer');
+    //     } else {
+    //         // validasinya success
+    //         $this->_login();
+    //     }
+	// }
 
     private function _login()
     {
