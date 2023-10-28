@@ -12,7 +12,7 @@ class Auth extends CI_Controller {
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');   
         $this->load->view('templates/sidebar');   
-        // $this->load->view('user/profile');
+        // $this->load->view('user/profile'); // Ganti disini aja (comment or uncomment)
         $this->load->view('admin/dashboard');
         // $this->load->view('admin/manage_books');
         $this->load->view('templates/footer');

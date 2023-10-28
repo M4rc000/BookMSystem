@@ -1,106 +1,71 @@
 <div class="container-fluid page-body-wrapper">
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+          <!-- QUERY MENU -->
+          <?php 
+            $role_id = 1;
+            $queryMenu = "SELECT `menu`.`menu_id`, `menu_name`
+                            FROM `menu` JOIN `role_access_menu`
+                              ON `menu`.`menu_id` = `role_access_menu`.`menu_id`
+                           WHERE `role_access_menu`.`role_id` = $role_id
+                        ORDER BY `role_access_menu`.`menu_id` ASC
+                        ";
+            $menu = $this->db->query($queryMenu)->result_array();
+          ?>
+
+          <!-- LOOPING MENU -->
+          <?php foreach ($menu as $m) : ?>
+            <hr id="sidebar-divider">
+            <span class="text-secondary menu" id="menu" style="font-size: 12px !important; font-weight: bold;">
+              <?= $m['menu_name']; ?>
+            </span>
+
+          
+            <!-- SIAPKAN SUB-MENU SESUAI MENU -->
+            <?php 
+              // $menuId = 1;
+              $menuId = $m['menu_id'];
+              $querySubMenu = "SELECT *
+                                FROM `submenu` JOIN `menu` 
+                                  ON `submenu`.`menu_id` = `menu`.`menu_id`
+                                WHERE `submenu`.`menu_id` = $menuId
+                                  AND `submenu`.`is_active` = 1
+                          ";
+              $subMenu = $this->db->query($querySubMenu)->result_array();
+            ?>
+
+            <?php $title = 'Dashboard';  ?>
+            <?php foreach ($subMenu as $sm) : ?>
+            
+              <?php if ($title == $sm['submenu_name']) : ?>
+                <li class="nav-item active">
+                    <?php else : ?>
+                <li class="nav-item">
+                  <?php endif; ?>
+                    <a class="nav-link" href="<?= base_url($sm['submenu_url']); ?>">
+                        <i class="<?= $sm['submenu_icon']; ?>"></i>
+                        <span class="menu-title">&nbsp;&nbsp;&nbsp;<?= $sm['submenu_name']; ?></span></a>
+                </li>
+                <?php $menuId+=1;?>
+            <?php endforeach; ?>
+          <?php endforeach; ?>
+
+
+          <hr id="sidebar-divider">
+
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-              <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Form elements</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="form-elements">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Charts</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="icon-grid-2 menu-icon"></i>
-              <span class="menu-title">Tables</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="tables">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-              <i class="icon-contract menu-icon"></i>
-              <span class="menu-title">Icons</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="icons">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-              <i class="icon-ban menu-icon"></i>
-              <span class="menu-title">Error pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="error">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/documentation/documentation.html">
-              <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+            <a class="nav-link" href="">
+              <i class="ti-arrow-circle-right"></i>
+              <span class="menu-title">&nbsp;&nbsp;&nbsp;Logout</span>
             </a>
           </li>
         </ul>
       </nav>
       <div class="main-panel">
+
+<script>
+  $('.icon-menu').on('click', function (){
+    $('.menu').toggleClass('text-center');
+  });
+</script>
+
