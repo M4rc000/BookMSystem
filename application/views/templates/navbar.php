@@ -7,17 +7,20 @@
 					alt="logo" /></a>
 			<a class="navbar-brand brand-logo-mini" href="index.html"><img src="<?= base_url('assets'); ?>/images/logo-mini.svg" alt="logo" /></a>
 		</div>
-		<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-			<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+		<div class="navbar-menu-wrapper d-flex align-items-center justify-content-start">
+			<button class="navbar-toggler navbar-toggler align-self-center pb-1" type="button" data-toggle="minimize">
 				<span class="icon-menu"></span>
 			</button>
 			<ul class="navbar-nav navbar-nav-right">
+				<li class="nav-item dropdown pr-5 pt-2">
+					<a class="nav-link count-indicator dropdown-toggle" id="time">test</a>
+				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link count-indicator dropdown-toggle" id="dark-mode" href="#">
 						<i class="mdi mdi-brightness-4 mx-0"></i>
 					</a>
 				</li>
-				<li class="nav-item dropdown pr-3">
+				<li class="nav-item dropdown pr-3 pt-1">
 					<a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
 						data-toggle="dropdown">
 						<i class="icon-bell mx-0"></i>
@@ -67,7 +70,7 @@
 						</a>
 					</div>
 				</li>
-				<li class="nav-item nav-profile dropdown">
+				<li class="nav-item nav-profile dropdown pb-3">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
 						<img src="<?= base_url('assets'); ?>/images/faces/face25.jpg" alt="profile" />
 					</a>
@@ -110,5 +113,20 @@
 					localStorage.setItem('darkMode', 'false');
 				}
 			});
+
+
+			const RealTime = {
+				getCurrentTime: () => {
+					return new Date().toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+				}
+			};
+
+			function updateCurrentTime() {
+				$('#time').text(RealTime.getCurrentTime() + ' | Indonesian Time');
+			}
+
+			updateCurrentTime();
+			setInterval(updateCurrentTime, 1000);
+
 		});
 	</script>

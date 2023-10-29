@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 	<div class="row">
 		<div class="col-sm justify-content-center">
-			<div class="card text-center" style="border-bottom: 4px solid #4b49ac; ">
+			<div class="card text-center" style="border-bottom: 3px solid #4b49ac; height: 60px;">
 				<div class="card-body pt-3 pb-2">
 					<h4 style="font-size: 24px"><strong>TABLE MANAGE MENU</strong></h4>
 				</div>
@@ -11,7 +11,7 @@
 	<br>
 	<div class="row">
 		<div class="col-lg grid-margin stretch-card">
-			<div class="card" style="border-left: 4px solid #ffc100;">
+			<div class="card" style="border-left: 3px solid #ffc100;">
 				<div class="card-body">
 					<div class="table-responsive py-3">
 						<table class="table">
