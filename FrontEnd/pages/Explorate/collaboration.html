@@ -7,7 +7,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no"
 		/>
-		<title>Skydash Admin</title>
+		<title>Book Management System</title>
 		<!-- plugins:css -->
 		<link rel="stylesheet" href="../../vendors/feather/feather.css" />
 		<link
@@ -48,71 +48,42 @@
           </nav>
 			<!-- partial:partials/_navbar.html -->
 
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800 my-3">My Profile</h1>
-            
-                
-                <div class="col-md-6 grid-margin stretch-card shadow rounded">
-					<div class="card">
-					  <div class="card-body">
-						<img src="../../images/faces/images.jpeg " class="rounded mx-auto d-block img-thumbnail mb-5">
-						<form class="forms-sample">
-						  <div class="form-group">
-							<label for="exampleInputUsername1">Name</label>
-							<input type="text" class="form-control" id="name" placeholder="Username">
-						  </div>
-						  <div class="form-group">
-							<label for="exampleInputEmail1">Email address</label>
-							<input type="email" class="form-control" id="email" placeholder="Email">
-						  </div>
-						  <div class="form-group">
-							<label for="exampleInputPassword1">Place of Birth</label>
-							<input type="text" class="form-control" id="place_of_birth" placeholder="Place of Birth">
-						  </div>
-						  <div class="form-group">
-							<label for="exampleInputConfirmPassword1">Date of Birth</label>
-							<input type="date" class="form-control" id="date_of_birth" placeholder="Date of Birth">
-						  </div>
-						  <div class="form-group">
-							<label for="exampleInputPassword1">Role</label>
-							<input type="text" class="form-control" id="role" placeholder="Administrator" disabled>
-						  </div>
-						  <div class="form-group">
-							<label for="exampleSelectGender">Gender</label>
-							  <select class="form-control" id="gender">
-								<option>Male</option>
-								<option>Female</option>
-							  </select>
-							</div>
-							<div class="form-group">
-								<label for="exampleSelectGender">Religion</label>
-								  <select class="form-control" id="religion">
-									<option>Islam</option>
-									<option>Katholik</option>
-									<option>Buddha</option>
-									<option>Hindu</option>
-								  </select>
-								</div>
-						  <div class="form-check form-check-flat form-check-primary">
-							<label class="form-check-label">
-							  <input type="checkbox" class="form-check-input">
-							  Remember me
-							</label>
-						  </div>
-						  <button type="submit" class="btn btn-primary mr-2">Submit</button>
-						  <button class="btn btn-light">Cancel</button>
-						</form>
-					  </div>
-					</div>
-				  </div>
-            
-            </div>
 			
 				<!-- partial -->
 				<!-- partial:partials/_sidebar.html -->
-				
+				<div class="h3 m-3 text-gray">Collaboration</div>
+                <button class="btn btn-primary ml-3 mb-3"> Add New Books</button>
+                
+                <div class="col-lg-6 grid-margin stretch-card shadow ml-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table table-bordered text-center">
+                            <thead>
+                              <tr>
+                                <th>No</th>
+                                <th>Image</th>
+                                <th>Book Name</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td><img src="../../images/books/tere-liye-bumi.jpg" alt=""></td>
+                                <td>Bumi</td>
+                                <td>this is the description</td>
+                                <td><label class="badge badge-dark mr-1">Acces</label>
+                                    <label class="badge badge-warning mr-1">Edit</label>
+                                    <label class="badge badge-danger">Delete</label></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 
 				<!-- partial -->
 
@@ -145,5 +116,3 @@
 		<!-- End custom js for this page-->
 	</body>
 </html>
-
-
