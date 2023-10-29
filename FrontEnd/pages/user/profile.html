@@ -53,28 +53,60 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-4 text-gray-800 my-3">My Profile</h1>
             
-                <div class="row">
-                    <div class="col-lg-6">
-                            </div>
-                </div>
-                <div class="card mb-3 col-lg-6 shadow">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="http://localhost/SE/Restaurant/assets/img/profile/profile.jpg" class="card-img mt-2">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Marco Antonio</h5>
-                                <p class="card-text">marco@gmail.com</p>
-                                <p class="card-text">Bogor 2003-11-03</p>
-                                <p class="card-text">Administrator</p>
-                                <p class="card-text">Katholik | Male | AB</p>
-                                <p class="card-text">Indonesia</p>
-                                <p class="card-text"><small class="text-muted">Since 01 January 1970</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <div class="col-md-6 grid-margin stretch-card shadow rounded">
+					<div class="card">
+					  <div class="card-body">
+						<img src="../../images/faces/images.jpeg " class="rounded mx-auto d-block img-thumbnail mb-5">
+						<form class="forms-sample">
+						  <div class="form-group">
+							<label for="exampleInputUsername1">Name</label>
+							<input type="text" class="form-control" id="name" placeholder="Username">
+						  </div>
+						  <div class="form-group">
+							<label for="exampleInputEmail1">Email address</label>
+							<input type="email" class="form-control" id="email" placeholder="Email">
+						  </div>
+						  <div class="form-group">
+							<label for="exampleInputPassword1">Place of Birth</label>
+							<input type="text" class="form-control" id="place_of_birth" placeholder="Place of Birth">
+						  </div>
+						  <div class="form-group">
+							<label for="exampleInputConfirmPassword1">Date of Birth</label>
+							<input type="date" class="form-control" id="date_of_birth" placeholder="Date of Birth">
+						  </div>
+						  <div class="form-group">
+							<label for="exampleInputPassword1">Role</label>
+							<input type="text" class="form-control" id="role" disabled>
+						  </div>
+						  <div class="form-group">
+							<label for="exampleSelectGender">Gender</label>
+							  <select class="form-control" id="gender">
+								<option>Male</option>
+								<option>Female</option>
+							  </select>
+							</div>
+							<div class="form-group">
+								<label for="exampleSelectGender">Religion</label>
+								  <select class="form-control" id="religion">
+									<option>Islam</option>
+									<option>Katholik</option>
+									<option>Buddha</option>
+									<option>Hindu</option>
+								  </select>
+								</div>
+						  <div class="form-check form-check-flat form-check-primary">
+							<label class="form-check-label">
+							  <input type="checkbox" class="form-check-input">
+							  Remember me
+							</label>
+						  </div>
+						  <button type="submit" class="btn btn-primary mr-2">Submit</button>
+						  <button class="btn btn-light">Cancel</button>
+						</form>
+					  </div>
+					</div>
+				  </div>
             
             </div>
 			
