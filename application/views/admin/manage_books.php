@@ -84,8 +84,14 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="image">Image</label>
-								<input type="image" class="form-control" id="image" name="image" value="Administrator">
+								<label>File upload</label>
+								<input type="file" name="img[]" class="file-upload-default">
+								<div class="input-group col-xs-12">
+									<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+									<span class="input-group-append">
+									<button class="file-upload-browse btn btn-primary" type="button" style="background-color: #4b49ac">Upload</button>
+									</span>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -99,21 +105,6 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="image">Image</label>
-								<input type="image" class="form-control" id="image" name="image" value="Administrator">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="aktif">Status</label>
-								<select class="form-control text-dark" id="aktif" name="aktif">
-									<option value="Active" selected>Active</option>
-									<option value="Not Active">Not Active</option>
-								</select>
-							</div>
-						</div>
 					</div>
 				</form>
 			</div>
@@ -127,27 +118,12 @@
   </div>
 </div>
 
-<!-- DELETE CONFIRM MODAL-->
-<div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to delete ?</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" style="background-color: grey; border-color: grey;" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" style="background-color: #4b49ac;">Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- EDIT MODAL-->
 <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Edit User</h4>
+        <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Edit Book</h4>
       </div>
       <div class="modal-body">
 		<div class="row">
@@ -156,22 +132,28 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="name">Name</label>
-								<input type="text" class="form-control" id="name" name="name" value="Marco">
+								<label for="title">Title</label>
+								<input type="text" class="form-control" id="title" name="title" value="Love Story">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="role_id">Role ID</label>
-								<input type="text" class="form-control" id="role_id" name="role_id" value="1">
+								<label for="...">...</label>
+								<input type="text" class="form-control" id="..." name="..." value="...">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="role">Role</label>
-								<input type="text" class="form-control" id="role" name="role" value="Administrator">
+								<label>File upload</label>
+								<input type="file" name="img[]" class="file-upload-default">
+								<div class="input-group col-xs-12">
+									<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+									<span class="input-group-append">
+									<button class="file-upload-browse btn btn-primary" type="button" style="background-color: #4b49ac">Upload</button>
+									</span>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -183,6 +165,8 @@
 								</select>
 							</div>
 						</div>
+					</div>
+					<div class="row">
 					</div>
 				</form>
 			</div>

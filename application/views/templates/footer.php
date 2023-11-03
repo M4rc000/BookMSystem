@@ -20,7 +20,12 @@
  <script src="<?= base_url('assets'); ?>/js/todolist.js"></script>
  <script src="<?= base_url('assets'); ?>/js/dashboard.js"></script>
  <script src="<?= base_url('assets'); ?>/js/Chart.roundedBarCharts.js"></script>
+ <script src="<?= base_url('assets'); ?>/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+ <script src="<?= base_url('assets'); ?>/vendors/select2/select2.min.js"></script>
+ <script src="<?= base_url('assets'); ?>/js/file-upload.js"></script>
+ <script src="<?= base_url('assets'); ?>/js/typeahead.js"></script>
+ <script src="<?= base_url('assets'); ?>/js/select2.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
- </body>
+</body>
 
  </html>

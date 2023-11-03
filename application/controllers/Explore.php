@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class Explore extends CI_Controller {
 
 	public function __construct()
     {
@@ -11,23 +11,35 @@ class User extends CI_Controller {
 	
 	public function index()
 	{
-        $data['title'] = 'My Profile';
+        $data['title'] = 'My Books';
         
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');   
         $this->load->view('templates/sidebar');   
-        $this->load->view('user/profile', $data);
+        $this->load->view('explore/my_books', $data);
         $this->load->view('templates/footer');
 	}
-	
-	public function change_password()
+    
+	public function explorations()
 	{
-        $data['title'] = 'Change Password';
+        $data['title'] = 'Explorations';
         
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');   
         $this->load->view('templates/sidebar');   
-        $this->load->view('user/change_password', $data);
+        $this->load->view('explore/explorations',$data);
         $this->load->view('templates/footer');
 	}
+
+	public function collaborations()
+	{
+        $data['title'] = 'Collaborations';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar');   
+        $this->load->view('templates/sidebar');   
+        $this->load->view('explore/collaborations',$data);
+        $this->load->view('templates/footer');
+	}
+
 }

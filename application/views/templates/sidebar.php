@@ -16,7 +16,7 @@
           <!-- LOOPING MENU -->
           <?php foreach ($menu as $m) : ?>
             <hr id="sidebar-divider">
-            <span class="text-secondary menu" id="menu" style="font-size: 12px !important; font-weight: bold;">
+            <span class="text-secondary menu text-center" id="menu" style="font-size: 12px !important; font-weight: bold;">
               <?= $m['menu_name']; ?>
             </span>
 
@@ -34,10 +34,9 @@
               $subMenu = $this->db->query($querySubMenu)->result_array();
             ?>
 
-            <?php $title = 'Dashboard';  ?>
             <?php foreach ($subMenu as $sm) : ?>
             
-              <?php if ($title == $sm['submenu_name']) : ?>
+              <?php if ($title === $sm['submenu_name']) : ?>
                 <li class="nav-item active">
                     <?php else : ?>
                 <li class="nav-item">
@@ -62,10 +61,3 @@
         </ul>
       </nav>
       <div class="main-panel">
-
-<script>
-  $('.icon-menu').on('click', function (){
-    $('.menu').toggleClass('text-center');
-  });
-</script>
-

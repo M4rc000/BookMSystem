@@ -13,6 +13,7 @@
 		<div class="col-lg grid-margin stretch-card">
 			<div class="card" style="border-left: 2px solid #ffc100;">
 				<div class="card-body">
+				<button class="btn btn-primary ml-3 mb-3" style="background-color: #4b49ac" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New User</span></button>
 					<div class="table-responsive py-3">
 						<table class="table">
 							<thead>
@@ -44,40 +45,129 @@
 </div>
 <!-- content-wrapper ends -->
 
+<!-- ADD MODAL-->
+<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Add New User</h4>
+      </div>
+      <div class="modal-body">
+		<div class="row">
+			<div class="col-md-12">
+				<form class="forms-sample" action="" method="">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" id="name" name="name">
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="role">Role</label>
+								<input type="text" class="form-control" id="role" name="role">
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="username">Username</label>
+								<input type="text" class="form-control" id="username" name="username">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="text" class="form-control" id="email" name="email">
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label>File upload</label>
+								<input type="file" name="img[]" class="file-upload-default">
+								<div class="input-group col-xs-12">
+									<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+									<span class="input-group-append">
+									<button class="file-upload-browse btn btn-primary" type="button" style="background-color: #4b49ac">Upload</button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="aktif">Status</label>
+								<select class="form-control text-dark" id="aktif" name="aktif">
+									<option value="Active" selected>Active</option>
+									<option value="Not Active">Not Active</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" style="background-color: grey; border-color: grey;" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" style="background-color: #4b49ac;">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- EDIT MODAL-->
 <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Edit User</h4>
       </div>
       <div class="modal-body">
 		<div class="row">
 			<div class="col-md-12">
-				<form class="forms-sample">
+				<form class="forms-sample" action="" method="">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="name">Name</label>
-								<input type="text" class="form-control" id="name" name="name" value="Marco">
+								<input type="text" class="form-control" id="name" name="name">
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-sm-4">
 							<div class="form-group">
-								<label for="role_id">Role ID</label>
-								<input type="text" class="form-control" id="role_id" name="role_id" value="1">
+								<label for="role">Role</label>
+								<input type="text" class="form-control" id="role" name="role">
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="username">Username</label>
+								<input type="text" class="form-control" id="username" name="username">
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-sm-4">
 							<div class="form-group">
-								<label for="role">Role</label>
-								<input type="text" class="form-control" id="role" name="role" value="Administrator">
+								<label for="email">Email</label>
+								<input type="text" class="form-control" id="email" name="email">
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label>File upload</label>
+								<input type="file" name="img[]" class="file-upload-default">
+								<div class="input-group col-xs-12">
+									<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+									<span class="input-group-append">
+									<button class="file-upload-browse btn btn-primary" type="button" style="background-color: #4b49ac">Upload</button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="aktif">Status</label>
 								<select class="form-control text-dark" id="aktif" name="aktif">

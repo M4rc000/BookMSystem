@@ -11,3 +11,8 @@ hr#sidebar-divider {
 a.nav-link{
     height: 43px !important;
 }
+
+.btn-primary{
+
+    background-color: rgb(75,73,172) !important;
+}
