@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2023 at 10:51 AM
+-- Generation Time: Nov 03, 2023 at 07:39 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -105,14 +105,14 @@ CREATE TABLE `submenu` (
 
 INSERT INTO `submenu` (`submenu_id`, `menu_id`, `submenu_name`, `submenu_url`, `submenu_icon`, `is_active`) VALUES
 (1, 1, 'Dashboard', 'admin/', 'ti-dashboard', 1),
-(2, 1, 'Manage User', 'admin/manageuser', 'mdi mdi-account-multiple', 1),
-(3, 1, 'Manage User Role', 'admin/manageuserrole', 'mdi mdi-account-key', 1),
-(4, 1, 'Manage Menu', 'admin/managemenu', 'ti-layout-tab', 1),
-(5, 1, 'Manage Sub-menu', 'admin/managesubmenu', 'ti-view-list-alt', 1),
-(6, 1, 'Manage Books', 'admin/managebooks', 'mdi mdi-book-open-page-variant', 1),
-(7, 2, 'My Profile', 'user', 'mdi mdi-account-card-details', 1),
-(8, 2, 'Change Password', 'user/changepassoword', 'ti-unlock', 1),
-(9, 3, 'My Books', 'explore', 'ti-book', 1),
+(2, 1, 'Manage User', 'admin/manage_user', 'mdi mdi-account-multiple', 1),
+(3, 1, 'Manage Role', 'admin/manage_role', 'mdi mdi-account-key', 1),
+(4, 1, 'Manage Menu', 'admin/manage_menu', 'ti-layout-tab', 1),
+(5, 1, 'Manage Sub-menu', 'admin/manage_sub_menu', 'ti-view-list-alt', 1),
+(6, 1, 'Manage Books', 'admin/manage_books', 'mdi mdi-book-open-page-variant', 1),
+(7, 2, 'My Profile', 'user/', 'mdi mdi-account-card-details', 1),
+(8, 2, 'Change Password', 'user/change_password', 'ti-unlock', 1),
+(9, 3, 'My Books', 'explore/', 'ti-book', 1),
 (10, 3, 'Explorations', 'explore/explorations', 'mdi mdi-compass-outline', 1),
 (11, 3, 'Collaborations', 'explore/collaborations', 'mdi mdi-compass-outline', 1),
 (12, 3, 'Explorations', 'explore/explorations', 'mdi mdi-compass-outline', 0),
@@ -146,7 +146,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `username`, `email`, `password`, `image`, `gender`, `place_of_birth`, `date_of_birth`, `date_joined`, `is_active`, `role_id`) VALUES
 (1, 'Marco', 'Prime', 'marcoantoniomadgaskar@gmail.com', '$2y$10$fBSRG6NDyZGRe', 'default.jpg', 'Male', '', '', '22-10-2023 10:49:21', 1, 1),
 (2, 'Robby', 'Robbs', 'robbyarsyadani@gmail.com', '$2y$10$5bo924uVR0Rkp', 'default.jpg', 'Male', '', '', '22-10-2023 10:51:35', 1, 1),
-(3, 'Hansen', 'Hanz', 'Hansenhoswari@gmail.com', '$2y$10$EYlyliOHGqTb0', 'default.jpg', '', '', '', '22-10-2023 10:52:37', 1, 1);
+(3, 'Hansen', 'Hnsz', 'Hansenhoswari@gmail.com', '$2y$10$EYlyliOHGqTb0', 'default.jpg', '', '', '', '22-10-2023 10:52:37', 1, 1);
 
 --
 -- Indexes for dumped tables
