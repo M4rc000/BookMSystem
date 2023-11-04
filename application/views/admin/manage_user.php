@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 	<div class="row">
 		<div class="col-sm text-center">
-			<div class="card" style="border-bottom: 3px solid #4b49ac; height: 60px;">
+			<div class="card shadow" style="border-bottom: 2px solid #4b49ac; height: 60px; border-radius: 5px">
 				<div class="card-body">
 					<h4><strong>TABLE USER</strong></h4>
 				</div>
@@ -11,9 +11,9 @@
 	<br>
 	<div class="row">
 		<div class="col-lg grid-margin stretch-card">
-			<div class="card" style="border-left: 2px solid #ffc100;">
+			<div class="card shadow" style="border-left: 2px solid #ffc100;">
 				<div class="card-body">
-				<button class="btn btn-primary ml-3 mb-3" style="background-color: #4b49ac" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New User</span></button>
+				<button class="btn btn-primary ml-3 mb-3" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New User</span></button>
 					<div class="table-responsive py-3">
 						<table class="table">
 							<thead>
@@ -90,7 +90,7 @@
 								<div class="input-group col-xs-12">
 									<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
 									<span class="input-group-append">
-									<button class="file-upload-browse btn btn-primary" type="button" style="background-color: #4b49ac">Upload</button>
+									<button class="file-upload-browse btn btn-primary" type="button">Upload</button>
 									</span>
 								</div>
 							</div>
@@ -110,8 +110,8 @@
 		</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" style="background-color: grey; border-color: grey;" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" style="background-color: #4b49ac;">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -162,7 +162,7 @@
 								<div class="input-group col-xs-12">
 									<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
 									<span class="input-group-append">
-									<button class="file-upload-browse btn btn-primary" type="button" style="background-color: #4b49ac">Upload</button>
+									<button class="file-upload-browse btn btn-primary" type="button">Upload</button>
 									</span>
 								</div>
 							</div>
@@ -182,8 +182,8 @@
 		</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" style="background-color: grey; border-color: grey;" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" style="background-color: #4b49ac;">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -197,8 +197,8 @@
         <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to delete ?</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" style="background-color: grey; border-color: grey;" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" style="background-color: #4b49ac;">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Confirm</button>
       </div>
     </div>
   </div>

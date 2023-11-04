@@ -7,13 +7,16 @@
 					style="border-radius: 5px;">
 			</div>
 		</div>
-		<div class="col-md-2 mt-4 ml-5" style="display: flex; flex-direction: column; align-items: center;">
-			<button type="button" class="btn btn-primary btn-rounded"
-				style="background-color: #4b49ac; margin-bottom: 10px; width: 135px; border: none">New Photo</button>
-			<button type="button" class="btn btn-primary  btn-rounded"
-				style="background-color: #57b657; margin-bottom: 10px; width: 135px; border: none">Edit Photo</button>
-			<button type="button" class="btn btn-primary  btn-rounded" style="background-color: #ff4747; width: 135px; border: none">Delete
-				Photo</button>
+		<div class="col-md-5 mt-4 ml-1" style="display: flex; flex-direction: column; align-items: center;">
+			<div class="form-group">
+				<input type="file" name="img[]" class="file-upload-default">
+				<div class="input-group col-xs-3">
+					<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+					<span class="input-group-append">
+						<button class="file-upload-browse btn btn-primary" type="button">New Photo</button>
+					</span>
+				</div>
+			</div>
 		</div>
 	</div>
 	<br>

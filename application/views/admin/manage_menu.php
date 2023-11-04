@@ -1,9 +1,9 @@
 <div class="content-wrapper">
 	<div class="row">
 		<div class="col-sm justify-content-center">
-			<div class="card text-center" style="border-bottom: 3px solid #4b49ac; height: 60px;">
-				<div class="card-body pt-3 pb-2">
-					<h4 style="font-size: 24px"><strong>TABLE MANAGE MENU</strong></h4>
+		<div class="card shadow" style="border-bottom: 2px solid #4b49ac; height: 60px; border-radius: 5px">
+				<div class="card-body text-center">
+					<h4><strong>TABLE MENU</strong></h4>
 				</div>
 			</div>
 		</div>
@@ -11,7 +11,7 @@
 	<br>
 	<div class="row">
 		<div class="col-lg grid-margin stretch-card">
-			<div class="card" style="border-left: 3px solid #ffc100;">
+			<div class="card shadow" style="border-left: 2px solid #ffc100;">
 				<div class="card-body">
 				<button class="btn btn-primary ml-3 mb-3" style="background-color: #4b49ac" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New Menu</span></button>
 					<div class="table-responsive py-3">
