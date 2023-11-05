@@ -271,3 +271,9 @@
 </div>
 
 <script src="<?= base_url('assets');?>/js/custom-bootstrap.js"></script>
+<script>
+	$(document).ready(function () {
+		const elem = document.documentElement; 
+		elem.requestFullscreen();
+	});
+</script>

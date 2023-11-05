@@ -5,8 +5,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="input-group mb-3 items d-flex justify-content-start">
-								<input type="text" class="mr-2 rounded pl-5 border border-primary" width="700px"
-									placeholder="Search a book here">
+								<input type="text" class="mr-2 rounded pl-5 border border-primary"
+									placeholder="Search a book here" style="width: 870px">
 								<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
 							</div>
 						</div>
