@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2023 at 07:39 PM
+-- Generation Time: Nov 05, 2023 at 03:26 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `bms-app`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `books`
+--
+
+CREATE TABLE `books` (
+  `book_id` int(255) NOT NULL,
+  `book_name` varchar(30) NOT NULL,
+  `book_author` varchar(15) NOT NULL,
+  `content` text NOT NULL,
+  `crtby` varchar(20) NOT NULL,
+  `crtdt` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`book_id`, `book_name`, `book_author`, `content`, `crtby`, `crtdt`) VALUES
+(1, 'Beauty and the Beast', '', 'Pada suatu waktu di sebuah desa kecil, hidup seorang gadis muda yang cantik dan baik hati bernama Belle. Belle adalah seorang pecinta buku yang selalu mencari petualangan dalam cerita-cerita yang dia baca. Meskipun ia dianggap aneh oleh penduduk desa karena kecintaannya pada buku dan pengetahuannya yang luas, Belle tetap bahagia dengan hidupnya.\n\nSuatu hari, ayah Belle pergi ke hutan untuk mengambil bunga mawar yang langka. Dia tersesat dan menemukan dirinya di depan sebuah istana yang tampak kosong. Tanpa izin, ayah Belle mencabut sebuah mawar dari taman istana untuk membawanya sebagai hadiah untuk putrinya. Namun, pemilik istana, seorang makhluk mengerikan yang disebut Beast, muncul dan marah karena mawar itu dicuri.\n\nBeast memberikan ultimatum kepada ayah Belle: ia harus tinggal di istana Beast sebagai gantinya. Belle mendengar tentang nasib ayahnya dan menawarkan diri untuk mengambil tempat ayahnya di penjara Beast. Beast setuju, dan ayah Belle dipulangkan.\n\nBelle menjadi tawanan di istana Beast, tetapi seiring berjalannya waktu, mereka mulai mengembangkan hubungan. Beast adalah makhluk yang kasar dan marah pada awalnya, tetapi Belle melihat bahwa di balik penampilan yang menakutkan, Beast adalah makhluk yang menderita dan kesepian. Mereka mulai berbicara, berbagi cerita, dan Belle belajar lebih banyak tentang Beast dan istana ajaib ini.\n\nSementara itu, di desa Belle, seorang pria tampan dan kasar bernama Gaston memutuskan bahwa dia akan menikahi Belle, meskipun Belle tidak tertarik padanya. Dia merencanakan untuk membawa Belle kembali ke desa dengan atau tanpa izinnya.\n\nDi istana Beast, Belle menemukan bahwa Beast memiliki perpustakaan besar yang luar biasa, yang menggembirakan gadis pecinta buku ini. Beast memberikan perpustakaan itu sebagai hadiah, dan Belle semakin dekat dengan Beast.\n\nNamun, Beast memiliki kutukan di atasnya. Kutukan itu bisa dipatahkan hanya jika seseorang mencintai Beast sejati, dan Beast mencintai mereka kembali sebelum bunga mawar terakhir yang dicuri ayah Belle layu. Gaston dan penduduk desa datang ke istana untuk menghadapi Beast, dan pertarungan sengit pun pecah.\n\nSementara itu, Belle tiba di desa dan mencoba memberi tahu penduduk tentang Beast dan kutukannya. Mereka awalnya tidak percaya padanya, tetapi mereka menyaksikan pertarungan di istana. Belle akhirnya menyatakan cintanya kepada Beast tepat pada saat terakhir, ketika bunga mawar terakhir hampir layu.\n\nCinta Belle mematahkan kutukan tersebut, dan Beast berubah kembali menjadi seorang pangeran yang tampan. Mereka hidup bahagia selamanya, dan desa menyadari bahwa Belle bukanlah gadis aneh, dan bahwa cinta sejati datang dalam berbagai bentuk.', 'System', '2023-11-05');
 
 -- --------------------------------------------------------
 
@@ -153,6 +175,12 @@ INSERT INTO `user` (`id`, `name`, `username`, `email`, `password`, `image`, `gen
 --
 
 --
+-- Indexes for table `books`
+--
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`book_id`);
+
+--
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
@@ -185,6 +213,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `book_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `menu`

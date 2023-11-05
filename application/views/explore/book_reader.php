@@ -1,3 +1,14 @@
+<?php
+$hostname = 'localhost';
+$username = 'root';
+$pass = 'MarcoAntonio20031103';
+$database = 'bms-app';
+
+$conn = mysqli_connect($hostname, $username, $pass, $database);
+$query = "SELECT content FROM books";
+$result = mysqli_query($conn, $query);
+
+?>
 <style>
 	carousel {
 		position: relative
@@ -233,17 +244,16 @@
 					aria-label="Slide 7"></button>
 			</div>
 			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="container text-justify text-center" style="padding: 80px">
-						<p style="font-family: 'Kaushan Script', cursive; font-size: 30px !important">
-						Sangkuriang and Asal Mula Tangkuban Perahu
-						</p>
+				<?php while($row = mysqli_fetch_array($result)) {?>
+					<div class="carousel-item active">
+						<div class="container text-justify text-center" style="padding: 80px">
+						<p style="font-family: 'Indie Flower', cursive"><?= $row['content']; ?></p>
+						</div>
+						<div class="carousel-caption d-none d-md-block">
+							
+						</div>
 					</div>
-					<div class="carousel-caption d-none d-md-block">
-						
-					</div>
-				</div>
-				<div class="carousel-item">
+				<!-- <div class="carousel-item">
 					<div class="container text-justify" style="padding: 80px;">
 						<p style="font-family: 'Indie Flower', cursive">Diceritakan pada zaman dahulu, hiduplah seorang Mama bernama Dayang Sumbi yang tinggal bersama anaknya bernama Sangkuriang.Keduanya tinggal di sebuah desa bersama dengan seekor anjing kesayangan mereka yaitu Tumang.Sebelum hidup berdua bersama anaknya, Dayang Sumbi menikah dengan titisan dewa yang telah dikutuk menjadi hewan dan dibuang ke bumi.Tanpa mereka sadari, sebenarnya mereka hidup bertiga bersama suami Dayang Sumbi dan papa dari Sangkuriang yang berubah menjadi anjing kutukan tadi.Setelah melewati masa bersama anaknya, Sangkuriang pun tumbuh menjadi pemuda dengan paras memesona serta tubuh yang gagah dan kuat.Sangkuriang tumbuh menjadi anak pemberani yang senang berburu, ia pun selalu ditemani si Tumang yang merupakan titisan anjing dari papa kandungnya sendiri.</p>
 					</div>
@@ -258,7 +268,8 @@
 					<div class="carousel-caption d-none d-md-block">
 						
 					</div>
-				</div>
+				</div> -->
+				<?php } ?>
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="padding-right: 5.5rem;">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -273,7 +284,9 @@
 <script src="<?= base_url('assets');?>/js/custom-bootstrap.js"></script>
 <script>
 	$(document).ready(function () {
-		const elem = document.documentElement; 
-		elem.requestFullscreen();
+		// const elem = document.documentElement; 
+		// elem.requestFullscreen();
+
+		$('input').hide();
 	});
 </script>
