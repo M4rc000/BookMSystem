@@ -42,4 +42,15 @@ class Explore extends CI_Controller {
         $this->load->view('templates/footer');
 	}
 
+	public function read_book()
+	{
+        $data['title'] = 'Book Reader';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar');   
+        $this->load->view('templates/sidebar');   
+        $this->load->view('explore/book_reader',$data);
+        $this->load->view('templates/footer');
+	}
+
 }
