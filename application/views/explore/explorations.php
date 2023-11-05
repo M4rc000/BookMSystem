@@ -5,7 +5,6 @@
 		  <input type="text" class="rounded w-25 mr-1 pl-3 border border-primary " placeholder="Search">
 		  <select class="form-select rounded mr-1 ho" id="inputGroupSelect01">
 			<option value="public">Public</option>
-			<option value="private">Private</option>
 		  </select>
 		  <button class="btn btn-primary" type="button" id="search-button">Search</button>
 		</div>
