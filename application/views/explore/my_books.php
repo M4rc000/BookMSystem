@@ -1,15 +1,27 @@
 <div class="content-wrapper" style="background-color: rgb(237,237,237);">
 	<div class="container">
-	<div class="form-group">
-		<div class="input-group d-flex justify-content-end">
-		  <input type="text" class="rounded w-25 mr-1 pl-3 border border-primary " placeholder="Search">
-		  <select class="form-select rounded mr-1 ho" id="inputGroupSelect01">
-			<option value="public">Public</option>
-			<option value="private">Private</option>
-		  </select>
-		  <button class="btn btn-primary" type="button" id="search-button">Search</button>
+		
+	<div class="d-flex justify-content-between align-items-center bg-white shadow p-4 rounded">
+		<div class="col-md-6 align-items-center">
+          <div class="row">
+            <label class="col-form-label fw-bold">Sort by</label>
+            <div class="col-sm-5">
+              <select class="form-control">
+                <option>All</option>
+                <option>Private</option>
+                <option>Public</option>
+              </select>
+            </div>
+          </div>
+        </div>
+		 <div class="">
+          <div class="input-group">
+            <input type="text" class="form-control mr-1 rounded" placeholder="Search a book here" aria-label="Recipient's username">
+            <button class="btn btn-sm btn-primary" type="button">Search</button>
+          </div>
+    	</div>
 		</div>
-	</div>
+		
 		<div class="row row-cols-1 row-cols-md-3 g-4 mt-5 mb-3">
 			<div class="col">
 				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">

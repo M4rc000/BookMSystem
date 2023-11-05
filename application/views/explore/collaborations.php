@@ -1,5 +1,17 @@
 <div class="content-wrapper" style="background-color: rgb(237,237,237);">
 	<div class="container">
+	<div class="col-md-6 align-items-center">
+          <div class="row">
+            <label class="col-form-label fw-bold">Sort by</label>
+            <div class="col-sm-5">
+              <select class="form-control">
+                <option>username</option>
+              </select>
+            </div>
+			<button class="btn btn-sm btn-primary" type="button">Search</button>
+          </div>
+        </div>
+		 <div class="">
 		<div class="row row-cols-1 row-cols-md-3 g-4 mt-5 mb-3">
 			<div class="col">
 				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
