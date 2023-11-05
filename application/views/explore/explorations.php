@@ -1,5 +1,18 @@
 <div class="content-wrapper" style="background-color: rgb(237,237,237);">
 	<div class="container">
+		<div class="card shadow" style="border-radius: 5px">
+				<div class="card-body p-3" style="height: 80px;">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="input-group mb-3 items d-flex justify-content-start">
+								<input type="text" class="mr-2 rounded pl-5 border border-primary" width="700px"
+									placeholder="Search a book here">
+								<button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		<div class="row row-cols-1 row-cols-md-3 g-4 mt-5 mb-3">
 			<div class="col">
 				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
