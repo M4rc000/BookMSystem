@@ -26,15 +26,18 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="text-center">1</td>
-									<td class="text-center">Jacob</td>
-									<td class="text-center">Administrator</td>
-									<td class="text-center">1</td>
-									<td class="text-center"><a href="#" class="badge badge-success" data-bs-toggle="modal" data-bs-target="#EditModal"><i
-												class="mdi mdi-pencil"></i></a> <a href="" class="badge badge-danger" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal"><i
-												class="mdi mdi-delete"></i></a></td>
-								</tr>
+								<?php $number = 1; foreach($user as $u) : ?>
+									<tr>
+										<td class="text-center"><?= $number; ?></td>
+										<td class="text-center"><?= $u['name']; ?></td>
+										<td class="text-center"><?= $u['role_id'] == 1 ? 'Administrator' : 'User' ?></td>
+										<td class="text-center"><?= $u['role_id']; ?></td>
+										<td class="text-center"><a href="#" class="badge badge-success" data-bs-toggle="modal" data-bs-target="#EditModal<?= $u['id']; ?>"><i
+													class="mdi mdi-pencil"></i></a> <a href="" class="badge badge-danger" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal"><i
+													class="mdi mdi-delete"></i></a></td>
+									</tr>
+								<?php $number+=1; ?>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
@@ -118,7 +121,8 @@
 </div>
 
 <!-- EDIT MODAL-->
-<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+<?php foreach($user as $u) : ?>
+<div class="modal fade" id="EditModal<?= $u['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
   <div class="modal-dialog modal-lg">
   <div class="modal-content">
       <div class="modal-header">
@@ -129,30 +133,39 @@
 			<div class="col-md-12">
 				<form class="forms-sample" action="" method="">
 					<div class="row">
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="name">Name</label>
-								<input type="text" class="form-control" id="name" name="name">
+								<input type="text" class="form-control" id="name" name="name" value="<?= $u['name']; ?>">
 							</div>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<div class="form-group">
-								<label for="role">Role</label>
-								<input type="text" class="form-control" id="role" name="role">
+								<label for="role">Role ID</label>
+								<input type="text" class="form-control" id="role" name="role" value="<?= $u['role_id']; ?>">
 							</div>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="username">Username</label>
-								<input type="text" class="form-control" id="username" name="username">
+								<input type="text" class="form-control" id="username" name="username" value="<?= $u['username']; ?>">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="aktif">Status</label>
+								<select class="form-control text-dark" id="aktif" name="aktif">
+									<option value="Active" <?= $u['is_active'] == 1 ? 'selected' : '' ?>>Active</option>
+									<option value="Not Active" <?= $u['is_active'] != 1 ? 'selected' : '' ?>>Not Active</option>
+								</select>
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-4">
+					<div class="col-sm-4">
 							<div class="form-group">
 								<label for="email">Email</label>
-								<input type="text" class="form-control" id="email" name="email">
+								<input type="text" class="form-control" id="email" name="email" value="<?= $u['email']; ?>">
 							</div>
 						</div>
 						<div class="col-sm-4">
@@ -167,14 +180,12 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label for="aktif">Status</label>
-								<select class="form-control text-dark" id="aktif" name="aktif">
-									<option value="Active" selected>Active</option>
-									<option value="Not Active">Not Active</option>
-								</select>
-							</div>
+						<div class="col-sm-4 pt-2">
+							<frame>
+								<div class="panel shadow" style="border: 1px solid #f5f7ff; border-radius: 15px; width: fit-content">
+									<img src="<?= base_url('assets'); ?>/images/profile/<?= $u['image']; ?>" alt="" width="200" height="90" style="border-radius: 15px">
+								</div>
+							</frame>
 						</div>
 					</div>
 				</form>
@@ -188,6 +199,7 @@
     </div>
   </div>
 </div>
+<?php endforeach; ?>
 
 <!-- DELETE CONFIRM MODAL-->
 <div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">

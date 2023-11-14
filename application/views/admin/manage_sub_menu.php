@@ -30,16 +30,17 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php $number= 0; foreach($submenu as $sb) : $number+=1; ?>
 								<tr>
-									<td class="text-center">1</td>
-									<td class="text-center">Dashboard</td>
-									<td class="text-center">Admin</td>
-									<td class="text-center">admin/dashboard</td>
-									<td class="text-center">mdi mdi-dashboard</td>
-									<td class="text-center">1</td>
+									<td class="text-center"><?= $number; ?></td>
+									<td class="text-center"><?= $sb['submenu_name']; ?></td>
+									<td class="text-center"><?php if($sb['menu_id'] == 1){ echo 'Admin'; } elseif($sb['menu_id'] == 2){ echo 'User'; } else{ echo 'Explore'; } ?></td>
+									<td class="text-center"><?= $sb['submenu_url']; ?></td>
+									<td class="text-center"><?= $sb['submenu_icon']; ?></td>
+									<td class="text-center"><?php if($sb['is_active'] == 1){ echo '<span class="mdi mdi-check-circle" style="font-size: 20px;  color: blue"></span>'; } else{ echo '<span class="mdi mdi-close-circle" style="font-size: 20px"></span>'; } ?></td>
 									<td class="text-center">
 										<a href="" class="badge badge-success pt-2" data-bs-toggle="modal"
-											data-bs-target="#EditModal">
+											data-bs-target="#EditModal<?= $sb['submenu_id']; ?>">
 											<i class="mdi mdi-pencil"></i>
 										</a>
 										<a href="" class="badge badge-danger pt-2" data-bs-toggle="modal"
@@ -48,6 +49,7 @@
 										</a>
 									</td>
 								</tr>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
@@ -60,7 +62,7 @@
 
 
 <!-- ADD MODAL-->
-<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+<!-- <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
 	style="margin-top: -5rem">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -102,10 +104,11 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <!-- EDIT MODAL-->
-<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+<?php foreach($submenu as $sb) : ?>
+<div class="modal fade" id="EditModal<?= $sb['submenu_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
 	style="margin-top: -5rem">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -117,22 +120,42 @@
 					<div class="col-md-12">
 						<form class="forms-sample">
 							<div class="row">
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<div class="form-group">
 										<label for="submenu_name">Sub-Menu Name</label>
-										<input type="text" class="form-control" id="submenu_name" name="submenu_name">
+										<input type="text" class="form-control" id="submenu_name" name="submenu_name" value="<?= $sb['submenu_name'] ?>">
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label for="menu_id">Menu</label>
+										<input type="text" class="form-control" id="menu_id" name="menu_id" value="<?php if($sb['menu_id'] == 1){ echo 'Admin'; } elseif($sb['menu_id'] == 2){ echo 'User'; } else{ echo 'Explore'; } ?>">
+									</div>
+								</div>
+								<div class="col-sm-3">
 									<div class="form-group">
 										<label for="submenu_url">Sub-Menu Url</label>
-										<input type="text" class="form-control" id="submenu_url" name="submenu_url">
+										<input type="text" class="form-control" id="submenu_url" name="submenu_url" value="<?= $sb['submenu_url'] ?>">
 									</div>
 								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
+								<div class="col-sm-3">
+									<div class="form-group">									
 										<label for="submenu_icon">Sub-Menu Icon</label>
-										<input type="text" class="form-control" id="submenu_icon" name="submenu_icon">
+										<div class="input-group mb-3">
+											<span class="input-group-text <?= $sb['submenu_icon']; ?>" id="span-icon"></span>
+											<input type="text" class="form-control" id="submenu_icon" name="submenu_icon" value="<?= $sb['submenu_icon'] ?>">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label for="aktif">Status</label>
+										<select class="form-control text-dark" id="aktif" name="aktif">
+											<option value="Active" <?= $sb['is_active'] == 1 ? 'selected' : '' ?>>Active</option>
+											<option value="Not Active" <?= $sb['is_active'] != 1 ? 'selected' : '' ?>>Not Active</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -141,13 +164,14 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" style="background-color: grey; border-color: grey;"
+				<button type="button" class="btn btn-secondary"
 					data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" style="background-color: #4b49ac;">Save changes</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 	</div>
 </div>
+<?php endforeach; ?>
 
 <!-- DELETE CONFIRM MODAL-->
 <div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -165,3 +189,13 @@
 		</div>
 	</div>
 </div>
+
+
+<script>	
+	$('#submenu_icon').on('keyup', function(){
+		var initialIcon = $('#submenu_icon').val();
+		$('#span-icon').addClass(initialIcon);
+		var icon = $(this).val();
+		$('#span-icon').attr('class', 'input-group-text ' + icon);
+	});
+</script>

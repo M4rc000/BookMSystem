@@ -25,12 +25,13 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php $number = 0; foreach($roles as $role) : $number+=1;?>
 								<tr>
-									<td class="text-center">1</td>
-									<td class="text-center">Administrator</td>
-									<td class="text-center">1</td>
+									<td class="text-center"><?= $number; ?></td>
+									<td class="text-center"><?= $role['role_name']; ?></td>
+									<td class="text-center"><?= $role['role_id']; ?></td>
 									<td class="text-center">
-										<a href="" class="badge badge-warning text-white pt-2" data-bs-toggle="modal" data-bs-target="#ConfigModal">
+										<a href="" class="badge badge-warning text-white pt-2" data-bs-toggle="modal" data-bs-target="#ConfigModal<?= $role['role_id']; ?>">
 											<i class="mdi mdi-wrench"></i>
 										</a> 
 										<a href="" class="badge badge-danger pt-2" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal">
@@ -38,6 +39,7 @@
 										</a>
 									</td>
 								</tr>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
@@ -49,7 +51,8 @@
 
 
 <!-- CONFIG MODAL-->
-<div class="modal fade" id="ConfigModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+<?php foreach($roles as $role) : ?>
+<div class="modal fade" id="ConfigModal<?= $role['role_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -63,13 +66,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="role">Role</label>
-								<input type="text" class="form-control" id="role" name="role" value="Administrator">
+								<input type="text" class="form-control" id="role" name="role" value="<?= $role['role_name']; ?>">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="role_id">Role ID</label>
-								<input type="text" class="form-control" id="role_id" name="role_id" value="1">
+								<input type="text" class="form-control" id="role_id" name="role_id" value="<?= $role['role_id']; ?>">
 							</div>
 						</div>
 					</div>
@@ -79,30 +82,16 @@
 						</div>
 					</div>
 					<div class="row mt-1">
+					<?php foreach ($menu as $m) : ?>
 						<div class="col-md-4">
 							<div class="form-check form-check-flat form-check-primary">
 								<label class="form-check-label">
-								<input type="checkbox" class="form-check-input">
-								Admin
+								<input type="checkbox" class="form-check-input" <?= check_access($role['role_id'], $m['menu_id']); ?>>
+								<?= $m['menu_name']; ?>
 								</label>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="form-check form-check-flat form-check-primary">
-								<label class="form-check-label">
-								<input type="checkbox" class="form-check-input">
-								User
-								</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-check form-check-flat form-check-primary">
-								<label class="form-check-label">
-								<input type="checkbox" class="form-check-input">
-								Explore
-								</label>
-							</div>
-						</div>
+					<?php endforeach; ?>
 					</div>
 				</form>
 			</div>
@@ -115,6 +104,8 @@
     </div>
   </div>
 </div>
+<?php endforeach; ?>
+
 
 <!-- ADD MODAL-->
 <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
