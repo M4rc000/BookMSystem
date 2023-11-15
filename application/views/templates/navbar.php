@@ -1,3 +1,4 @@
+<?php $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); ?>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <div class="container-scroller">
 	<!-- partial:partials/_navbar.html -->
@@ -74,12 +75,13 @@
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
 						<img src="<?= base_url('assets'); ?>/images/profile/default.webp" alt="profile" style="width: 45px; height: 40px;"/>
 					</a>
+					<h5 class="text-white pt-4 pl-2 fs-1"><?= $user['username']; ?></h4>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
 						<a class="dropdown-item">
 							<i class="ti-settings text-primary"></i>
 							Settings
 						</a>
-						<a class="dropdown-item">
+						<a class="dropdown-item" data-bs-target="#DeleteConfirmModal" data-bs-toggle="modal" href="#">
 							<i class="ti-power-off text-primary"></i>
 							Logout
 						</a>
@@ -92,6 +94,21 @@
 			</button>
 		</div>
 	</nav>
+	
+	<!-- DELETE CONFIRM MODAL-->
+	<div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to logout ?</h4>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+			<a href="<?= base_url('auth/logout'); ?>"><button type="button" class="btn btn-primary">Confirm</button></a>
+		</div>
+		</div>
+	</div>
+	</div>
 
 	<script>
 		$(document).ready(function() {

@@ -3,7 +3,8 @@
         <ul class="nav">
           <!-- QUERY MENU -->
           <?php 
-            $role_id = 1;
+            $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $role_id = $user['role_id'];
             $queryMenu = "SELECT `menu`.`menu_id`, `menu_name`
                             FROM `menu` JOIN `role_access_menu`
                               ON `menu`.`menu_id` = `role_access_menu`.`menu_id`
@@ -23,7 +24,6 @@
           
             <!-- SIAPKAN SUB-MENU SESUAI MENU -->
             <?php 
-              // $menuId = 1;
               $menuId = $m['menu_id'];
               $querySubMenu = "SELECT *
                                 FROM `submenu` JOIN `menu` 
@@ -36,7 +36,7 @@
 
             <?php foreach ($subMenu as $sm) : ?>
             
-              <?php if ($title === $sm['submenu_name']) : ?>
+              <?php if ($title == $sm['submenu_name']) : ?>
                 <li class="nav-item active">
                     <?php else : ?>
                 <li class="nav-item">
@@ -53,7 +53,7 @@
           <hr id="sidebar-divider">
 
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal">
               <i class="ti-arrow-circle-right"></i>
               <span class="menu-title">&nbsp;&nbsp;&nbsp;Logout</span>
             </a>
@@ -61,3 +61,19 @@
         </ul>
       </nav>
       <div class="main-panel">
+
+
+<!-- DELETE CONFIRM MODAL-->
+<div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to logout ?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="<?= base_url('auth/logout'); ?>"><button type="button" class="btn btn-primary">Confirm</button></a>
+      </div>
+    </div>
+  </div>
+</div>

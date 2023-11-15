@@ -1,3 +1,14 @@
+<style>
+	.select2-container{
+		width: 100% !important;
+	}
+
+    .select2-selection{
+        width: 100% !important;
+        height: 50px !important;
+        display: block !important;
+    }
+</style>
 <div class="content-wrapper">
 	<div class="row">
 		<div class="col-md-2 text-center">
@@ -40,7 +51,7 @@
 												<label class="col-sm-3 col-form-label">Name</label>
 												<div class="col-sm-9">
 													<input type="text" class="form-control" name="name" id="name"
-														placeholder="Name">
+														placeholder="Name" value="<?= $user['name']; ?>">
 												</div>
 											</div>
 										</div>
@@ -53,7 +64,7 @@
 															<span class="input-group-text">@</span>
 														</div>
 														<input type="text" class="form-control" placeholder="Username"
-															aria-label="Username" name="username" id="username">
+															aria-label="Username" name="username" id="username" value="<?= $user['username']; ?>">
 													</div>
 												</div>
 											</div>
@@ -65,7 +76,7 @@
 												<label class="col-sm-3 col-form-label">Email</label>
 												<div class="col-sm-9">
 													<input class="form-control" type="email" name="email" id="email"
-														placeholder="Email" />
+														placeholder="Email" value="<?= $user['email']; ?>"/>
 												</div>
 											</div>
 										</div>
@@ -73,10 +84,11 @@
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Gender</label>
 												<div class="col-sm-9">
-													<select class="form-control">
-														<option>Male</option>
-														<option>Female</option>
-													</select>
+												<select class="form-control text-dark">
+													<option value="">Select Gender</option>
+													<option value="Male" <?= $user['gender'] === 'Male' ? 'selected' : ''; ?>>Male</option>
+													<option value="Female" <?= $user['gender'] === 'Female' ? 'selected' : ''; ?>>Female</option>
+												</select>
 												</div>
 											</div>
 										</div>
@@ -87,7 +99,7 @@
 												<label class="col-sm-3 col-form-label">Date of Birth</label>
 												<div class="col-sm-9">
 													<input class="form-control" type="date" name="dateofbirth"
-														id="dateofbirth" placeholder="dd/mm/yyyy" />
+														id="dateofbirth" placeholder="dd/mm/yyyy" value="<?= $user['date_of_birth']; ?>">
 												</div>
 											</div>
 										</div>
@@ -95,8 +107,8 @@
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Place of Birth</label>
 												<div class="col-sm-9">
-													<input class="form-control" type="text" name="dateofbirth"
-														id="dateofbirth" placeholder="City or Region" />
+													<input class="form-control" type="text" name="placeofbirth"
+														id="placeofbirth" placeholder="City or Region" value="<?= $user['place_of_birth']; ?>">
 												</div>
 											</div>
 										</div>
@@ -106,12 +118,13 @@
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Country</label>
 												<div class="col-sm-9">
-													<select class="form-control">
-														<option>America</option>
-														<option>Italy</option>
-														<option>Russia</option>
-														<option>Britain</option>
-													</select>
+													<div class="form-group">
+														<select class="js-example-basic-single w-100" name="country" id="country">
+															<?php foreach($countries as $country) : ?>
+																<option value="<?= $country['country_name']; ?>" <?= $user['country'] == $country['country_name'] ? 'selected' : ''; ?> ><?= $country['country_name']; ?></option>
+															<?php endforeach; ?>
+														</select>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -120,7 +133,7 @@
 												<label class="col-sm-3 col-form-label">Date Joined</label>
 												<div class="col-sm-9">
 													<input type="text" class="form-control" name="datejoined"
-														id="datejoined" readonly>
+														id="datejoined" readonly value="<?= $user['date_joined']; ?>">
 												</div>
 											</div>
 										</div>
