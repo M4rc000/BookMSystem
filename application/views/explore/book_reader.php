@@ -1,7 +1,7 @@
 <?php
 $hostname = 'localhost';
 $username = 'root';
-$pass = 'MarcoAntonio20031103';
+$pass = '';
 $database = 'bms-app';
 
 $conn = mysqli_connect($hostname, $username, $pass, $database);
