@@ -20,7 +20,7 @@ class Auth extends CI_Controller {
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/auth_header',$data);
-            $this->load->view('auth/login',$data);
+            $this->load->view('auth/index',$data);
             $this->load->view('templates/auth_footer');
         } else {
             // validasinya success
@@ -48,7 +48,7 @@ class Auth extends CI_Controller {
                     ];
                    $this->session->set_userdata($data);
                     if ($user['role_id'] == 1) {
-                        redirect('admin/');
+                        redirect('admin');
                     } else {
                         redirect('user');
                     }

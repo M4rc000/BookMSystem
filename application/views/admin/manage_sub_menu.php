@@ -33,14 +33,14 @@
 								<?php $number= 0; foreach($submenu as $sb) : $number+=1; ?>
 								<tr>
 									<td class="text-center"><?= $number; ?></td>
-									<td class="text-center"><?= $sb['submenu_name']; ?></td>
+									<td class="text-center"><?= $sb['title']; ?></td>
 									<td class="text-center"><?php if($sb['menu_id'] == 1){ echo 'Admin'; } elseif($sb['menu_id'] == 2){ echo 'User'; } else{ echo 'Explore'; } ?></td>
-									<td class="text-center"><?= $sb['submenu_url']; ?></td>
-									<td class="text-center"><?= $sb['submenu_icon']; ?></td>
+									<td class="text-center"><?= $sb['url']; ?></td>
+									<td class="text-center"><?= $sb['icon']; ?></td>
 									<td class="text-center"><?php if($sb['is_active'] == 1){ echo '<span class="mdi mdi-check-circle" style="font-size: 20px;  color: blue"></span>'; } else{ echo '<span class="mdi mdi-close-circle" style="font-size: 20px"></span>'; } ?></td>
 									<td class="text-center">
 										<a href="" class="badge badge-success pt-2" data-bs-toggle="modal"
-											data-bs-target="#EditModal<?= $sb['submenu_id']; ?>">
+											data-bs-target="#EditModal<?= $sb['id']; ?>">
 											<i class="mdi mdi-pencil"></i>
 										</a>
 										<a href="" class="badge badge-danger pt-2" data-bs-toggle="modal"
@@ -62,7 +62,7 @@
 
 
 <!-- ADD MODAL-->
-<!-- <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
 	style="margin-top: -5rem">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -104,11 +104,11 @@
 			</div>
 		</div>
 	</div>
-</div> -->
+</div> 
 
 <!-- EDIT MODAL-->
 <?php foreach($submenu as $sb) : ?>
-<div class="modal fade" id="EditModal<?= $sb['submenu_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+<div class="modal fade" id="EditModal<?= $sb['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
 	style="margin-top: -5rem">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -123,7 +123,7 @@
 								<div class="col-sm-3">
 									<div class="form-group">
 										<label for="submenu_name">Sub-Menu Name</label>
-										<input type="text" class="form-control" id="submenu_name" name="submenu_name" value="<?= $sb['submenu_name'] ?>">
+										<input type="text" class="form-control" id="submenu_name" name="submenu_name" value="<?= $sb['title'] ?>">
 									</div>
 								</div>
 								<div class="col-sm-3">
@@ -135,15 +135,15 @@
 								<div class="col-sm-3">
 									<div class="form-group">
 										<label for="submenu_url">Sub-Menu Url</label>
-										<input type="text" class="form-control" id="submenu_url" name="submenu_url" value="<?= $sb['submenu_url'] ?>">
+										<input type="text" class="form-control" id="submenu_url" name="submenu_url" value="<?= $sb['url'] ?>">
 									</div>
 								</div>
 								<div class="col-sm-3">
 									<div class="form-group">									
 										<label for="submenu_icon">Sub-Menu Icon</label>
 										<div class="input-group mb-3">
-											<span class="input-group-text <?= $sb['submenu_icon']; ?>" id="span-icon"></span>
-											<input type="text" class="form-control" id="submenu_icon" name="submenu_icon" value="<?= $sb['submenu_icon'] ?>">
+											<span class="input-group-text <?= $sb['icon']; ?>" id="span-icon"></span>
+											<input type="text" class="form-control" id="submenu_icon" name="submenu_icon" value="<?= $sb['icon'] ?>">
 										</div>
 									</div>
 								</div>

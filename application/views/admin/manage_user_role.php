@@ -28,10 +28,10 @@
 								<?php $number = 0; foreach($roles as $role) : $number+=1;?>
 								<tr>
 									<td class="text-center"><?= $number; ?></td>
-									<td class="text-center"><?= $role['role_name']; ?></td>
-									<td class="text-center"><?= $role['role_id']; ?></td>
+									<td class="text-center"><?= $role['role']; ?></td>
+									<td class="text-center"><?= $role['id']; ?></td>
 									<td class="text-center">
-										<a href="" class="badge badge-warning text-white pt-2" data-bs-toggle="modal" data-bs-target="#ConfigModal<?= $role['role_id']; ?>">
+										<a href="" class="badge badge-warning text-white pt-2" data-bs-toggle="modal" data-bs-target="#ConfigModal<?= $role['id']; ?>">
 											<i class="mdi mdi-wrench"></i>
 										</a> 
 										<a href="" class="badge badge-danger pt-2" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal">
@@ -52,7 +52,7 @@
 
 <!-- CONFIG MODAL-->
 <?php foreach($roles as $role) : ?>
-<div class="modal fade" id="ConfigModal<?= $role['role_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+<div class="modal fade" id="ConfigModal<?= $role['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -66,13 +66,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="role">Role</label>
-								<input type="text" class="form-control" id="role" name="role" value="<?= $role['role_name']; ?>">
+								<input type="text" class="form-control" id="role" name="role" value="<?= $role['role']; ?>">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="role_id">Role ID</label>
-								<input type="text" class="form-control" id="role_id" name="role_id" value="<?= $role['role_id']; ?>">
+								<input type="text" class="form-control" id="role_id" name="role_id" value="<?= $role['id']; ?>">
 							</div>
 						</div>
 					</div>
@@ -86,8 +86,8 @@
 						<div class="col-md-4">
 							<div class="form-check form-check-flat form-check-primary">
 								<label class="form-check-label">
-								<input type="checkbox" class="form-check-input" <?= check_access($role['role_id'], $m['menu_id']); ?>>
-								<?= $m['menu_name']; ?>
+								<input type="checkbox" class="form-check-input" <?= check_access($role['id'], $m['id']); ?>>
+								<?= $m['menu']; ?>
 								</label>
 							</div>
 						</div>

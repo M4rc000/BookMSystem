@@ -21,7 +21,6 @@
 									<th class="text-center">#</th>
 									<th class="text-center">Menu</th>
 									<th class="text-center">Menu ID</th>
-									<th class="text-center">Url</th>
 									<th class="text-center">Action</th>
 								</tr>
 							</thead>
@@ -29,11 +28,10 @@
 								<?php $number = 0; foreach($menu as $m) : $number+=1; ?>
 								<tr>
 									<td class="text-center"><?= $number; ?></td>
-									<td class="text-center"><?= $m['menu_name']; ?></td>
-									<td class="text-center"><?= $m['menu_id']; ?></td>
-									<td class="text-center"><?= $m['menu_url']; ?></td>
+									<td class="text-center"><?= $m['menu']; ?></td>
+									<td class="text-center"><?= $m['id']; ?></td>
 									<td class="text-center">
-										<a href="" class="badge badge-success pt-2" data-bs-toggle="modal" data-bs-target="#EditModal<?= $m['menu_id'];?>">
+										<a href="" class="badge badge-success pt-2" data-bs-toggle="modal" data-bs-target="#EditModal<?= $m['id'];?>">
 											<i class="mdi mdi-pencil"></i>
 										</a> 
 										<a href="" class="badge badge-danger pt-2" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal">
@@ -92,7 +90,7 @@
 
 <!-- EDIT MODAL-->
 <?php foreach($menu as $m) : ?>
-<div class="modal fade" id="EditModal<?= $m['menu_id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+<div class="modal fade" id="EditModal<?= $m['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -106,19 +104,13 @@
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="menu_name">Menu Name</label>
-								<input type="text" class="form-control" id="menu_name" name="menu_name" value="<?= $m['menu_name']; ?>">
+								<input type="text" class="form-control" id="menu_name" name="menu_name" value="<?= $m['menu']; ?>">
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="menu_id">Menu ID</label>
-								<input type="text" class="form-control" id="menu_id" name="menu_id"  value="<?= $m['menu_id']; ?>">
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label for="menu_url">Menu Url</label>
-								<input type="text" class="form-control" id="menu_url" name="menu_url"  value="<?= $m['menu_url']; ?>">
+								<input type="text" class="form-control" id="menu_id" name="menu_id"  value="<?= $m['id']; ?>">
 							</div>
 						</div>
 					</div>

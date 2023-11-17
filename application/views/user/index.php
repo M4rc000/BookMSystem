@@ -14,7 +14,7 @@
 		<div class="col-md-2 text-center">
 			<div class="card shadow p-1"
 				style="border-radius: 5px; display: flex; align-items: center; width: 208px; height: 208px;">
-				<img src="<?= base_url('assets');?>/images/faces/face1.jpg" width="200" height="200"
+				<img src="<?= base_url('assets');?>/images/profile/<?= $user['image']; ?>" width="200" height="200"
 					style="border-radius: 5px;">
 			</div>
 		</div>
@@ -119,11 +119,17 @@
 												<label class="col-sm-3 col-form-label">Country</label>
 												<div class="col-sm-9">
 													<div class="form-group">
-														<select class="js-example-basic-single w-100" name="country" id="country">
-															<?php foreach($countries as $country) : ?>
-																<option value="<?= $country['country_name']; ?>" <?= $user['country'] == $country['country_name'] ? 'selected' : ''; ?> ><?= $country['country_name']; ?></option>
-															<?php endforeach; ?>
-														</select>
+													<select class="js-example-basic-single w-100" name="country" id="country">
+														<option value="<?= htmlspecialchars($user['country']); ?>"><?= htmlspecialchars($user['country']); ?></option>
+														<?php foreach ($countries as $country) : ?>
+															<?php
+															$countryName = trim($country['country_name']);
+															if ($countryName !== trim($user['country'])) :
+															?>
+																<option value="<?= htmlspecialchars($countryName); ?>"><?= htmlspecialchars($countryName); ?></option>
+															<?php endif; ?>
+														<?php endforeach; ?>
+													</select>
 													</div>
 												</div>
 											</div>
@@ -133,7 +139,7 @@
 												<label class="col-sm-3 col-form-label">Date Joined</label>
 												<div class="col-sm-9">
 													<input type="text" class="form-control" name="datejoined"
-														id="datejoined" readonly value="<?= $user['date_joined']; ?>">
+														id="datejoined" readonly value="<?=  date("l",strtotime($user['date_joined'])); ?>, <?= $user['date_joined']; ?>">
 												</div>
 											</div>
 										</div>

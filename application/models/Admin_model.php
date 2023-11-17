@@ -2,19 +2,39 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_model extends CI_Model {
-    public function getAllUsers(){
-       return $this->db->get('user')->result_array();
-    }
 
-    public function getAllRoles(){
-       return $this->db->get('role')->result_array();
-    }
-
-    public function getAllMenu(){
-       return $this->db->get('menu')->result_array();
-    }
+   // CREATE DATA
+   public function insertData($table,$Data){
+      return $this->db->insert($table,$Data);
+   }
     
-    public function getAllSubMenu(){
-       return $this->db->get('submenu')->result_array();
-    }
+   // READ DATA
+   public function getAllUsers(){
+       return $this->db->get('user')->result_array();
+   }
+
+   public function getAllRoles(){
+       return $this->db->get('user_role')->result_array();
+   }
+
+   public function getAllMenu(){
+       return $this->db->get('user_menu')->result_array();
+   }
+    
+   public function getAllSubMenu(){
+       return $this->db->get('user_sub_menu')->result_array();
+   }
+
+   // UPDATE DATA
+   public function updateData($table, $id, $Data){
+      $this->db->where('id',$id);  
+      $this->db->update($table, $Data);
+  }
+
+   // DELETE DATA
+   public function deleteData($table, $id, $active){
+      $this->db->set('is_active',$active);
+      $this->db->where('id',$id);  
+      $this->db->update($table);
+  }
 }

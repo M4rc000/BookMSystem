@@ -14,5 +14,6 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/mdi/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/select2/select2.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>

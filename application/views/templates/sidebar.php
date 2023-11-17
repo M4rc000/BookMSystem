@@ -3,52 +3,48 @@
         <ul class="nav">
           <!-- QUERY MENU -->
           <?php 
-            $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $role_id = $user['role_id'];
-            $queryMenu = "SELECT `menu`.`menu_id`, `menu_name`
-                            FROM `menu` JOIN `role_access_menu`
-                              ON `menu`.`menu_id` = `role_access_menu`.`menu_id`
-                           WHERE `role_access_menu`.`role_id` = $role_id
-                        ORDER BY `role_access_menu`.`menu_id` ASC
-                        ";
-            $menu = $this->db->query($queryMenu)->result_array();
+             $role_id = $this->session->userdata('role_id');
+             $queryMenu = "SELECT `user_menu`.`id`, `menu`
+                             FROM `user_menu` JOIN `user_access_menu`
+                               ON `user_menu`.`id` = `user_access_menu`.`menu_id`
+                            WHERE `user_access_menu`.`role_id` = $role_id
+                         ORDER BY `user_access_menu`.`menu_id` ASC
+                         ";
+             $menu = $this->db->query($queryMenu)->result_array();
           ?>
 
           <!-- LOOPING MENU -->
           <?php foreach ($menu as $m) : ?>
             <hr id="sidebar-divider">
             <span class="text-secondary menu text-center" id="menu" style="font-size: 12px !important; font-weight: bold;">
-              <?= $m['menu_name']; ?>
+              <?= $m['menu']; ?>
             </span>
 
           
             <!-- SIAPKAN SUB-MENU SESUAI MENU -->
             <?php 
-              $menuId = $m['menu_id'];
+              $menuId = $m['id'];
               $querySubMenu = "SELECT *
-                                FROM `submenu` JOIN `menu` 
-                                  ON `submenu`.`menu_id` = `menu`.`menu_id`
-                                WHERE `submenu`.`menu_id` = $menuId
-                                  AND `submenu`.`is_active` = 1
+                                FROM `user_sub_menu` JOIN `user_menu` 
+                                  ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
+                                WHERE `user_sub_menu`.`menu_id` = $menuId
+                                  AND `user_sub_menu`.`is_active` = 1
                           ";
               $subMenu = $this->db->query($querySubMenu)->result_array();
             ?>
-
-            <?php foreach ($subMenu as $sm) : ?>
-            
-              <?php if ($title == $sm['submenu_name']) : ?>
-                <li class="nav-item active">
-                    <?php else : ?>
-                <li class="nav-item">
-                  <?php endif; ?>
-                    <a class="nav-link" href="<?= base_url($sm['submenu_url']); ?>">
-                        <i class="<?= $sm['submenu_icon']; ?>"></i>
-                        <span class="menu-title">&nbsp;&nbsp;&nbsp;<?= $sm['submenu_name']; ?></span></a>
-                </li>
-                <?php $menuId+=1;?>
-            <?php endforeach; ?>
+               
+              
+              <?php 
+                foreach ($subMenu as $sm) : ?>
+                  <li class="nav-item">
+                      <a class="nav-link" href="<?= base_url($sm['url']); ?>">
+                          <i class="<?= $sm['icon']; ?>"></i>
+                          <span class="menu-title">&nbsp;&nbsp;&nbsp;<?= $sm['title']; ?></span>
+                      </a>
+                  </li>
+                  <?php $menuId+=1;?>
+              <?php endforeach; ?>
           <?php endforeach; ?>
-
 
           <hr id="sidebar-divider">
 
