@@ -34,22 +34,23 @@
             ?>
                
               
-              <?php 
-                foreach ($subMenu as $sm) : ?>
-                  <li class="nav-item">
-                      <a class="nav-link" href="<?= base_url($sm['url']); ?>">
-                          <i class="<?= $sm['icon']; ?>"></i>
-                          <span class="menu-title">&nbsp;&nbsp;&nbsp;<?= $sm['title']; ?></span>
-                      </a>
-                  </li>
-                  <?php $menuId+=1;?>
-              <?php endforeach; ?>
+               <?php
+                  $current_url = $this->uri->segment(1);
+                  foreach ($subMenu as $sm) : ?>
+                  
+                      <li class="nav-item <?= ($current_url === $sm['url']) ? 'active' : ''; ?>">
+                          <a class="nav-link" href="<?= base_url($sm['url']); ?>">
+                              <i class="<?= $sm['icon']; ?>"></i>
+                              <span class="menu-title">&nbsp;&nbsp;&nbsp;<?= $sm['title']; ?></span>
+                          </a>
+                      </li>
+                <?php endforeach; ?>
           <?php endforeach; ?>
 
           <hr id="sidebar-divider">
 
           <li class="nav-item">
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#Logout">
               <i class="ti-arrow-circle-right"></i>
               <span class="menu-title">&nbsp;&nbsp;&nbsp;Logout</span>
             </a>
@@ -58,18 +59,17 @@
       </nav>
       <div class="main-panel">
 
-
-<!-- DELETE CONFIRM MODAL-->
-<div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to logout ?</h4>
+            <!-- Logout CONFIRM MODAL-->
+      <div class="modal fade" id="Logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to logout ?</h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <a href="<?= base_url('auth/logout'); ?>"><button type="button" class="btn btn-primary">Confirm</button></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <a href="<?= base_url('auth/logout'); ?>"><button type="button" class="btn btn-primary">Confirm</button></a>
-      </div>
-    </div>
-  </div>
-</div>

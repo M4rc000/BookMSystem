@@ -81,7 +81,7 @@
 							<i class="ti-settings text-primary"></i>
 							Settings
 						</a>
-						<a class="dropdown-item" data-bs-target="#DeleteConfirmModal" data-bs-toggle="modal" href="#">
+						<a class="dropdown-item" data-bs-target="#Logout" data-bs-toggle="modal" href="#">
 							<i class="ti-power-off text-primary"></i>
 							Logout
 						</a>
@@ -95,8 +95,8 @@
 		</div>
 	</nav>
 	
-	<!-- DELETE CONFIRM MODAL-->
-	<div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+	<!-- Logout CONFIRM MODAL-->
+	<div class="modal fade" id="Logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
 	<div class="modal-dialog">
 		<div class="modal-content">
 		<div class="modal-header">

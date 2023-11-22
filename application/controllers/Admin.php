@@ -15,11 +15,11 @@ class Admin extends CI_Controller {
 	{
                 $data['title'] = 'Dashboard';
                 $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-                
+                $data['menu'] = $this->uri->segment(1);
 
                 $this->load->view('templates/header', $data);
-                $this->load->view('templates/navbar');   
-                $this->load->view('templates/sidebar',$data);   
+                $this->load->view('templates/navbar', $data);   
+                $this->load->view('templates/sidebar', $data);   
                 $this->load->view('admin/index', $data);
                 $this->load->view('templates/footer');
 	}
@@ -66,8 +66,7 @@ class Admin extends CI_Controller {
                                 $this->AModel->insertData('user', $Data);
                                 $_SESSION['message'] = 'SUCCESS';
                                 redirect('admin/manage_user');
-                        }
-        
+                        } 
                         elseif($this->input->post('edit_user')){
                                 $id = $this->input->post('id');
                                 $upload_image = $_FILES['img']['name'];
@@ -108,22 +107,15 @@ class Admin extends CI_Controller {
                                 $_SESSION['message'] = 'SUCCESS';
                                 redirect('admin/manage_user'); 
                         }
-        
-                        elseif($this->input->post('delete_user')){
-                                $id = $_POST['id'];
-                                $is_active = 0;
-                                $table = 'user';
-                                deleteData($table, $id, $is_active);
-                                redirect('admin/manage_user');
-                        }
                 }
 
                 else {
+                    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
                     $data['title'] = 'Manage User';
                     $data['user'] = $this->AModel->getAllUsers();
         
                     $this->load->view('templates/header', $data);
-                    $this->load->view('templates/navbar');
+                    $this->load->view('templates/navbar', $data);
                     $this->load->view('templates/sidebar');
                     $this->load->view('admin/manage_user', $data);
                     $this->load->view('templates/footer');
@@ -141,7 +133,7 @@ class Admin extends CI_Controller {
                 $data['menu'] = $this->AModel->getAllMenu();
 
                 $this->load->view('templates/header', $data);
-                $this->load->view('templates/navbar');   
+                $this->load->view('templates/navbar', $data);   
                 $this->load->view('templates/sidebar');   
                 $this->load->view('admin/manage_user_role',$data);
                 $this->load->view('templates/footer');
@@ -156,7 +148,7 @@ class Admin extends CI_Controller {
                 $data['menu'] = $this->AModel->getAllMenu();
 
                 $this->load->view('templates/header', $data);
-                $this->load->view('templates/navbar');   
+                $this->load->view('templates/navbar', $data);   
                 $this->load->view('templates/sidebar');   
                 $this->load->view('admin/manage_menu',$data);
                 $this->load->view('templates/footer');
@@ -164,28 +156,53 @@ class Admin extends CI_Controller {
 
 	public function manage_sub_menu()
 	{
-                $data['title'] = 'Manage Sub-Menu';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Manage Sub-Menu';
 
-                $this->load->model('Admin_model','AModel');
-                
-                $data['submenu'] = $this->AModel->getAllSubMenu();
+        $this->load->model('Admin_model','AModel');
+        
+        $data['submenu'] = $this->AModel->getAllSubMenu();
 
-                $this->load->view('templates/header', $data);
-                $this->load->view('templates/navbar');   
-                $this->load->view('templates/sidebar');   
-                $this->load->view('admin/manage_sub_menu',$data);
-                $this->load->view('templates/footer');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);   
+        $this->load->view('templates/sidebar');   
+        $this->load->view('admin/manage_sub_menu',$data);
+        $this->load->view('templates/footer');
 	}
 
 	public function manage_books()
 	{
-                $data['title'] = 'Manage Books';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Manage Books';
 
-                $this->load->view('templates/header', $data);
-                $this->load->view('templates/navbar');   
-                $this->load->view('templates/sidebar');   
-                $this->load->view('admin/manage_books',$data);
-                $this->load->view('templates/footer');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);   
+        $this->load->view('templates/sidebar');   
+        $this->load->view('admin/manage_books',$data);
+        $this->load->view('templates/footer');
 	}
 
+
+    // ACTION
+    public function deleteAdmin() {
+        $this->load->model('Admin_model','AModel');
+    
+        $id = $this->input->post('id');
+        $action = $this->input->post('action');
+    
+        if($action == 'manage_user'){
+            $this->AModel->deleteData('user', $id);
+            $status = 1;
+        }
+            // Check if the deletion was successful
+        if ($status == 1) {
+            $_SESSION['message'] = 'delete';
+            header("Location: " . base_url('admin/manage_user'));
+            exit; // Add exit to stop further execution
+        } else {
+            echo 'error';
+        }
+        
+    }
+    
 }

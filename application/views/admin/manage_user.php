@@ -36,9 +36,12 @@
 										<td class="text-center"><?= $u['role_id'] == 1 ? 'Administrator' : 'User' ?></td>
 										<td class="text-center"><?= $u['role_id']; ?></td>
 										<td class="text-center"><?= $u['is_active'] == 1 ? '<span class="mdi mdi-check-circle" style="font-size: 20px;  color: blue"></span>' : '<span class="mdi mdi-close-circle" style="font-size: 20px"></span>'; ?></td>
-										<td class="text-center"><a href="#" class="badge badge-success" data-bs-toggle="modal" data-bs-target="#EditModal<?= $u['id']; ?>"><i
-													class="mdi mdi-pencil"></i></a> <a href="" class="badge badge-danger" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal"><i
-													class="mdi mdi-delete"></i></a></td>
+										<td class="text-center">
+											<a href="#" class="badge badge-success" data-bs-toggle="modal" data-bs-target="#EditModal<?= $u['id']; ?>"><i
+													class="mdi mdi-pencil"></i></a> 
+											<a href="" class="badge badge-danger" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal<?= $u['id']; ?>"><i
+											class="mdi mdi-delete"></i></a>
+										</td>
 									</tr>
 								<?php $number+=1; ?>
 								<?php endforeach; ?>
@@ -228,21 +231,23 @@
 
 <!-- DELETE CONFIRM MODAL-->
 <?php foreach($user as $u) : ?>
-<div class="modal fade" id="DeleteConfirmModal<?= $u['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to delete ?</h4>
-      </div>
-	  <input type="text" name="id" id="id" value="<?= $u['id']; ?>" style="display: none;">
-	  <input type="text" name="is_active" id="is_active" value="<?= $u['is_active']; ?>" style="display: none;">
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary" name="delete_user">Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
+<?= form_open_multipart('admin/deleteAdmin'); ?>
+	<div class="modal fade" id="DeleteConfirmModal<?= $u['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to delete ?</h4>
+		</div>
+		<input type="text" name="id" id="id" value="<?= $u['id']; ?>" style="display: none;">
+		<input type="text" name="action" value="<?= $this->uri->segment(count($this->uri->segments)); ?>" style="display: none;">
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+			<button type="submit" class="btn btn-primary" name="delete_user">Confirm</button>
+		</div>
+		</div>
+	</div>
+	</div>
+</form>
 <?php endforeach; ?>
 
 <script>

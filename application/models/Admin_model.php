@@ -10,7 +10,7 @@ class Admin_model extends CI_Model {
     
    // READ DATA
    public function getAllUsers(){
-       return $this->db->get('user')->result_array();
+       return $this->db->get_where('user')->result_array();
    }
 
    public function getAllRoles(){
@@ -32,8 +32,8 @@ class Admin_model extends CI_Model {
   }
 
    // DELETE DATA
-   public function deleteData($table, $id, $active){
-      $this->db->set('is_active',$active);
+   public function deleteData($table, $id){
+      $this->db->set('is_active',0);
       $this->db->where('id',$id);  
       $this->db->update($table);
   }
