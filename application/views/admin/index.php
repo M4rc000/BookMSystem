@@ -1,10 +1,11 @@
 <div class="content-wrapper">
 	<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a><?= ucfirst($menu); ?></a></li>
-		<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
-	</ol>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a><?= ucfirst($menu); ?></a></li>
+			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
+		</ol>
 	</nav>
+	<br>
 	<div class="card shadow">
 		<div class="row justify-content-center">
 			<!-- <img src="<?= base_url('assets'); ?>/images/maintance.gif" alt=""> -->

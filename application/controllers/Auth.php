@@ -97,6 +97,8 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]', [
             'min_length' => 'Password too short!'
         ]);
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[10]|regex_match[/^[a-zA-Z0-9_]+$/]|is_unique[user.username]',[
+            'is_unique' => 'This username has already used!']);
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Register Page';
@@ -110,7 +112,7 @@ class Auth extends CI_Controller {
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'username' => htmlspecialchars($this->input->post('username', true)),
                 'email' => htmlspecialchars($email),
-                'image' => 'default.jpg',
+                'image' => 'default.webp',
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'date_of_birth' => '',
                 'place_of_birth' => '',
@@ -121,14 +123,13 @@ class Auth extends CI_Controller {
             ];
 
             $this->db->insert('user', $data);
-            // $this->_sendemail();
             $this->session->set_flashdata('registration','<div class="alert alert-danger alert-dismissible fade show" role="alert">
             Registration successfull :), Let\'s Login
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-        //   redirect('auth');
+          redirect('auth');
         }
     }
 

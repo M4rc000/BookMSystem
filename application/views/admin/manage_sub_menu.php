@@ -1,4 +1,11 @@
 <div class="content-wrapper">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a><?= ucfirst($menus); ?></a></li>
+			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
+		</ol>
+	</nav>
+	<br>
 	<div class="row">
 		<div class="col-sm justify-content-center">
 			<div class="card shadow" style="border-bottom: 2px solid #4b49ac; height: 60px; border-radius: 5px">
@@ -17,7 +24,7 @@
 						data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span
 							class="pl-3">New Sub-Menu</span></button>
 					<div class="table-responsive py-3">
-						<table class="table">
+						<table class="table" id="tbl-sub-menu">
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
@@ -192,6 +199,19 @@
 
 
 <script>	
+	$(window).ready(function(){
+		new DataTable('#tbl-sub-menu', {
+			searching: true,
+			search: {
+				"smart": false
+			},
+			lengthMenu: [
+				[10, 25, 50, -1],
+				[10, 25, 50, 'All']
+			]
+		});
+	})
+
 	$('#submenu_icon').on('keyup', function(){
 		var initialIcon = $('#submenu_icon').val();
 		$('#span-icon').addClass(initialIcon);
