@@ -147,6 +147,56 @@ class Auth extends CI_Controller {
         redirect('auth');
     }
 
+    public function verification()
+	{
+        $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
+        if ($this->session->userdata('email')) {
+            redirect('user');
+        }
+
+        $this->form_validation->set_rules('name', 'Name', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+            'is_unique' => 'This email has already registered!'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]', [
+            'min_length' => 'Password too short!'
+        ]);
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[10]|regex_match[/^[a-zA-Z0-9_]+$/]|is_unique[user.username]',[
+            'is_unique' => 'This username has already used!']);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Register Page';
+            $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/verification',$data);
+            $this->load->view('templates/auth_footer');
+        } else {
+            $email = $this->input->post('email', true);
+            $data = [
+                'name' => htmlspecialchars($this->input->post('name', true)),
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'email' => htmlspecialchars($email),
+                'image' => 'default.webp',
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'date_of_birth' => '',
+                'place_of_birth' => '',
+                'gender' => '',
+                'role_id' => 1,
+                'is_active' => 1,
+                'date_joined' => date('d-m-Y H:i:s')
+            ];
+
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata('registration','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Registration successfull :), Let\'s Login
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+          redirect('auth');
+        }
+	}
+
     // public function forgotpassword(){
     //     $data['title'] = 'Forgot Password Page';
     //     $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';

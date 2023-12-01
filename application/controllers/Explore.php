@@ -11,6 +11,9 @@ class Explore extends CI_Controller {
 	
 	public function index()
 	{
+                $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+                $data['countries'] = $this->db->get('countries')->result_array();
+                $data['menus'] = $this->uri->segment(1);
         $data['title'] = 'My Books';
         
         $this->load->view('templates/header', $data);
@@ -22,6 +25,9 @@ class Explore extends CI_Controller {
     
 	public function explorations()
 	{
+                $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+                $data['countries'] = $this->db->get('countries')->result_array();
+                $data['menus'] = $this->uri->segment(1);
         $data['title'] = 'Explorations';
         
         $this->load->view('templates/header', $data);
@@ -33,6 +39,9 @@ class Explore extends CI_Controller {
 
 	public function collaborations()
 	{
+                $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+                $data['countries'] = $this->db->get('countries')->result_array();
+                $data['menus'] = $this->uri->segment(1);
         $data['title'] = 'Collaborations';
 
         $this->load->view('templates/header', $data);
