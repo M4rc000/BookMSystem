@@ -1,4 +1,11 @@
 <div class="content-wrapper">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a><?= ucfirst($menu); ?></a></li>
+			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
+		</ol>
+	</nav>
+	<br>
 	<div class="row">
 		<div class="col-sm text-center">
 			<div class="card shadow" style="border-bottom: 2px solid #4b49ac; height: 60px; border-radius: 5px">
@@ -15,15 +22,16 @@
 				<div class="card-body">
 				<button class="btn btn-primary ml-3 mb-3" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New User</span></button>
 					<div class="table-responsive py-3">
-						<table class="table">
+						<table class="table" id="tbl-user">
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
 									<th class="text-center">Name</th>
 									<th class="text-center">Username</th>
 									<th class="text-center">Role</th>
-									<th class="text-center">Role ID</th>
+									<th class="text-center">Email</th>
 									<th class="text-center">Active</th>
+									<th class="text-center">Date Joined</th>
 									<th class="text-center">Action</th>
 								</tr>
 							</thead>
@@ -34,11 +42,15 @@
 										<td class="text-center"><?= $u['name']; ?></td>
 										<td class="text-center"><?= $u['username']; ?></td>
 										<td class="text-center"><?= $u['role_id'] == 1 ? 'Administrator' : 'User' ?></td>
-										<td class="text-center"><?= $u['role_id']; ?></td>
+										<td class="text-center"><?= $u['email']; ?></td>
 										<td class="text-center"><?= $u['is_active'] == 1 ? '<span class="mdi mdi-check-circle" style="font-size: 20px;  color: blue"></span>' : '<span class="mdi mdi-close-circle" style="font-size: 20px"></span>'; ?></td>
-										<td class="text-center"><a href="#" class="badge badge-success" data-bs-toggle="modal" data-bs-target="#EditModal<?= $u['id']; ?>"><i
-													class="mdi mdi-pencil"></i></a> <a href="" class="badge badge-danger" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal"><i
-													class="mdi mdi-delete"></i></a></td>
+										<td class="text-center"><?= $u['date_joined']; ?></td>
+										<td class="text-center">
+											<a href="#" class="badge badge-success" data-bs-toggle="modal" data-bs-target="#EditModal<?= $u['id']; ?>"><i
+													class="mdi mdi-pencil"></i></a> 
+											<a href="" class="badge badge-danger" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal<?= $u['id']; ?>"><i
+											class="mdi mdi-delete"></i></a>
+										</td>
 									</tr>
 								<?php $number+=1; ?>
 								<?php endforeach; ?>
@@ -56,7 +68,7 @@
 <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-		<?= form_open_multipart('admin/manage_user'); ?>
+		<?= form_open_multipart('admin/addAdmin'); ?>
 			<div class="modal-header">
 				<h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Add New User</h4>
 			</div>
@@ -107,8 +119,8 @@
 								<div class="form-group">
 									<label for="aktif">Status</label>
 									<select class="form-control text-dark" id="aktif" name="aktif">
-										<option value="Active" selected>Active</option>
-										<option value="Not Active">Not Active</option>
+										<option value="1" selected>Active</option>
+										<option value="0">Not Active</option>
 									</select>
 								</div>
 							</div>
@@ -180,8 +192,8 @@
 								<div class="form-group">
 									<label for="aktif">Status</label>
 									<select class="form-control text-dark" id="aktif" name="aktif">
-										<option value="Active" <?= $u['is_active'] == 1 ? 'selected' : '' ?>>Active</option>
-										<option value="Not Active" <?= $u['is_active'] != 1 ? 'selected' : '' ?>>Not Active</option>
+										<option value="1" <?= $u['is_active'] == 1 ? 'selected' : '' ?>>Active</option>
+										<option value="0" <?= $u['is_active'] != 1 ? 'selected' : '' ?>>Not Active</option>
 									</select>
 								</div>
 							</div>
@@ -228,25 +240,38 @@
 
 <!-- DELETE CONFIRM MODAL-->
 <?php foreach($user as $u) : ?>
-<div class="modal fade" id="DeleteConfirmModal<?= $u['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to delete ?</h4>
-      </div>
-	  <input type="text" name="id" id="id" value="<?= $u['id']; ?>" style="display: none;">
-	  <input type="text" name="is_active" id="is_active" value="<?= $u['is_active']; ?>" style="display: none;">
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary" name="delete_user">Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
+<?= form_open_multipart('admin/deleteAdmin'); ?>
+	<div class="modal fade" id="DeleteConfirmModal<?= $u['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to delete ?</h4>
+		</div>
+		<input type="text" name="id" id="id" value="<?= $u['id']; ?>" style="display: none;">
+		<input type="text" name="action" value="<?= $this->uri->segment(count($this->uri->segments)); ?>" style="display: none;">
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+			<button type="submit" class="btn btn-primary" name="delete_user">Confirm</button>
+		</div>
+		</div>
+	</div>
+	</div>
+</form>
 <?php endforeach; ?>
 
 <script>
     $(document).ready(function () {
+		new DataTable('#tbl-user', {
+			searching: true,
+			search: {
+				"smart": false
+			},
+			lengthMenu: [
+				[10, 25, 50, -1],
+				[10, 25, 50, 'All']
+			]
+		});
+
         $("#toggle-password").click(function () {
             var passwordInput = $("#password");
             var icon = $(this);

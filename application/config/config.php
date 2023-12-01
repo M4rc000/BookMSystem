@@ -378,8 +378,8 @@ $config['encryption_key'] = '';
 |
 */
 $config['sess_driver'] = 'files';
-$config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;
+$config['sess_cookie_name'] = 'bms_session';
+$config['sess_expiration'] = 3600;
 $config['sess_save_path'] = null;
 $config['sess_match_ip'] = false;
 $config['sess_time_to_update'] = 300;
