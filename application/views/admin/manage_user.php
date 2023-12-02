@@ -68,7 +68,7 @@
 <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-		<?= form_open_multipart('admin/addAdmin'); ?>
+		<?= form_open_multipart('admin/AddUser'); ?>
 			<div class="modal-header">
 				<h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Add New User</h4>
 			</div>
@@ -79,29 +79,29 @@
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label for="name">Name</label>
-									<input type="text" class="form-control" id="name" name="name">
+									<input type="text" class="form-control" id="name" name="name" required>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label for="username">Username</label>
-									<input type="text" class="form-control" id="username" name="username">
+									<input type="text" class="form-control" id="username" name="username" required>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label for="email">Email</label>
-									<input type="text" class="form-control" id="email" name="email">
+									<input type="text" class="form-control" id="email" name="email" required>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label for="password">Password</label>
 									<div class="input-group">
-										<input type="password" class="form-control" id="password" name="password" aria-describedby="password-addon">
+										<input type="password" class="form-control" id="password" name="password" aria-describedby="password-addon" required>
 										<div class="input-group-append">
 											<span class="input-group-text" id="password-addon" style="height: 46px; font-size: 21px">
-											<span class="mdi mdi-eye-off pt-1" id="toggle-password" style="cursor: pointer;"></span>
+												<span class="mdi mdi-eye-off pt-1" id="toggle-password" style="cursor: pointer;"></span>
 											</span>
 										</div>
 									</div>
@@ -112,13 +112,13 @@
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label for="role">Role</label>
-									<input type="text" class="form-control" id="role" name="role" placeholder="1: Administrator   2: User">
+									<input type="text" class="form-control" id="role" name="role" placeholder="1: Administrator   2: User" required>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label for="aktif">Status</label>
-									<select class="form-control text-dark" id="aktif" name="aktif">
+									<select class="form-control text-dark" id="aktif" name="aktif" required>
 										<option value="1" selected>Active</option>
 										<option value="0">Not Active</option>
 									</select>
@@ -161,7 +161,7 @@
 <div class="modal fade" id="EditModal<?= $u['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
   <div class="modal-dialog modal-lg">
   <div class="modal-content">
-	<?= form_open_multipart('admin/manage_user'); ?>
+	<?= form_open_multipart('admin/editUser'); ?>
 		<div class="modal-header">
 			<h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Edit User</h4>
 		</div>
@@ -240,7 +240,7 @@
 
 <!-- DELETE CONFIRM MODAL-->
 <?php foreach($user as $u) : ?>
-<?= form_open_multipart('admin/deleteAdmin'); ?>
+<?= form_open_multipart('admin/deleteUser'); ?>
 	<div class="modal fade" id="DeleteConfirmModal<?= $u['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -261,6 +261,8 @@
 
 <script>
     $(document).ready(function () {
+		$('body').addClass('sidebar-icon-only');
+
 		new DataTable('#tbl-user', {
 			searching: true,
 			search: {

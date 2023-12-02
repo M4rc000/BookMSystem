@@ -26,46 +26,23 @@
 			</div>
 		</div>
 		<div class="row row-cols-1 row-cols-md-3 g-4 mt-5 mb-3">
-			<div class="col">
-				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
-					<img src="..." class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural
-							lead-in to additional content. This content is a little bit longer.</p>
-							<p><a href="<?= base_url('explore/read_book'); ?>"> See</a></p>
-					</div>
-					<div class="card-footer">
-						<small class="text-body-secondary">Last updated 3 mins ago</small>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
-					<img src="..." class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural
-							lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-					<div class="card-footer">
-						<small class="text-body-secondary">Last updated 3 mins ago</small>
+			<?php $number = 0; foreach($books as $book) : $number+=1;?>
+				<div class="col">
+					<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
+						<img src="<?= base_url('assets'); ?>/images/books/<?= $book['image']; ?>" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title"><?= $book['name']; ?></h5>
+							<p class="card-text"><?= $book['sheet']; ?></p>
+							<p>
+								<a href="<?= base_url('explore/read_book'); ?>"> See</a>
+							</p>
+						</div>
+						<div class="card-footer">
+							<small class="text-body-secondary">Last updated 3 mins ago</small>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col">
-				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
-					<img src="..." class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural
-							lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-					<div class="card-footer">
-						<small class="text-body-secondary">Last updated 3 mins ago</small>
-					</div>
-				</div>
-			</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </div>

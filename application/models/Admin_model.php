@@ -25,6 +25,10 @@ class Admin_model extends CI_Model {
        return $this->db->get('user_sub_menu')->result_array();
    }
 
+   public function getAllBooks(){
+       return $this->db->get('books')->result_array();
+   }
+
    // UPDATE DATA
    public function updateData($table, $id, $Data){
       $this->db->where('id',$id);  

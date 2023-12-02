@@ -6,12 +6,7 @@
 							<div class="text-left py-5 px-4 px-sm-5 rounded-lg" style="backdrop-filter: blur(1px); opacity: 0.9;background-image: url(<?= base_url('assets');?>/images/auth/doodles.png);">
 								<h3 class="font-weight-light"><strong>Login</strong></h3>
 								<?php if ($this->session->flashdata('registration') != '') { ?>
-									<div class="alert alert-success alert-dismissible fade show" role="alert">
-										Your account successfully registered!
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
+									<?= $this->session->flashdata('registration'); ?>
 								<?php } ?>
 								<?php if ($this->session->flashdata('logout') != '') { ?>
 									<div class="alert alert-danger alert-dismissible fade show" role="alert">

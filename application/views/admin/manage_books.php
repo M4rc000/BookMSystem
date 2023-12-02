@@ -22,37 +22,41 @@
 				<div class="card-body">
 				<button class="btn btn-primary ml-3 mb-3" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New Book</span></button>
 					<div class="table-responsive py-3">
-						<table class="table" id="tbl-book">
+						<table class="table wrap" id="tbl-book">
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
 									<th class="text-center">Image</th>
 									<th class="text-center">Title</th>
-									<th class="text-center">About</th>
-									<th class="text-center">...</th>
-									<th class="text-center">...</th>
+									<th class="text-center">Sheet</th>
+									<th class="text-center">Author</th>
+									<th class="text-center">Publisher</th>
+									<th class="text-center">User</th>
 									<th class="text-center">Active</th>
 									<th class="text-center">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="text-center">1</td>
-									<td class="text-center"><img src="<?= base_url('assets');?>/images/faces/face1.jpg" alt=""></td>
-									<td class="text-center">Admin</td>
-									<td class="text-center">Simple Love</td>
-									<td class="text-center">...</td>
-									<td class="text-center">...</td>
-									<td class="text-center">1</td>
-									<td class="text-center">
-										<a href="" class="badge badge-success pt-2" data-bs-toggle="modal" data-bs-target="#EditModal">
-											<i class="mdi mdi-pencil"></i>
-										</a> 
-										<a href="" class="badge badge-danger pt-2" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal">
-											<i class="mdi mdi-delete"></i>
-										</a>
-                                    </td>
-								</tr>
+								<?php $number = 0; foreach($books as $book) : $number+=1;?>
+									<tr>
+										<td class="text-center"><?= $number; ?></td>
+										<td class="text-center"><img src="<?= base_url('assets');?>/images/profile/<?= $book['image']; ?>" alt=""></td>
+										<td class="text-center"><?= $book['name']; ?></td>
+										<td class="text-center"><?= $book['sheet']; ?></td>
+										<td class="text-center"><?= $book['author']; ?></td>
+										<td class="text-center"><?= $book['publisher']; ?></td>
+										<td class="text-center"><?= $book['crtby']; ?></td>
+										<td class="text-center"><?php if($book['is_active'] == 1){ echo '<span class="mdi mdi-check-circle" style="font-size: 20px;  color: blue"></span>'; } else{ echo '<span class="mdi mdi-close-circle" style="font-size: 20px"></span>'; } ?></td>
+										<td class="text-center">
+											<a href="" class="badge badge-success pt-2" data-bs-toggle="modal" data-bs-target="#EditModal">
+												<i class="mdi mdi-pencil"></i>
+											</a> 
+											<a href="" class="badge badge-danger pt-2" data-bs-toggle="modal" data-bs-target="#DeleteConfirmModal">
+												<i class="mdi mdi-delete"></i>
+											</a>
+										</td>
+									</tr>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
@@ -204,6 +208,8 @@
 
 <script>
 	$(window).ready(function(){
+
+		$('body').addClass('sidebar-icon-only');
 		new DataTable('#tbl-book', {
 			searching: true,
 			search: {
