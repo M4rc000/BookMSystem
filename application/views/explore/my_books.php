@@ -43,10 +43,10 @@
 					<?php $number = 0; foreach($books as $book) : $number+=1;?>
 						<div class="col-md-4">
 							<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important; background-color: hsl(0,0%,100%)">
-								<div class="cover-image m-2">
-									<img src="<?= base_url('assets'); ?>/images/books/<?= $book['image']; ?>" class="card-img-top"
+								<div class="cover-image m-2 position-relative">
+									<img src="<?= base_url('assets'); ?>/images/books/<?= $book['image'] ?>" class="card-img-top"
 										alt="..." style="width: 100%; height: 20vw; border-radius: 20px 20px 5px 5px !important;">
-										<div class="cover-favorites" style="border-radius: 20px; background-color: red; width: 25px; height: 25px;">
+										<div class="cover-favorites position-absolute" style="border-radius: 20px; background-color: red; width: 25px; height: 25px; top:0; right:0; margin-right:10px; margin-top:5px;">
 											<span class="mdi mdi-star-outline" style="font-size: 20px"></span>
 										</div>
 								</div>

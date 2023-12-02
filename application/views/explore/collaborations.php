@@ -29,7 +29,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="row row-cols-1 row-cols-md-3 g-4 mt-5 mb-3">
+		
+		<div class="card shadow mt-3">
+			<div class="card-body">
+		<div class="row row-cols-1 row-cols-md-3 g-4 p-3">
 			<div class="col">
 				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
 					<img src="..." class="card-img-top" alt="...">
@@ -70,5 +73,7 @@
 				</div>
 			</div>
 		</div>
+</div>
+</div>
 	</div>
 </div>
