@@ -74,6 +74,58 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- favorite books -->
+		<div class="bg-body-secondary shadow p-5 rounded">
+		<div class="row justify-content-center border-bottom mb-3 bg-dark align-items-center">
+			<p class="fs-1 text-white">Favorite Book</p>
+		</div>
+
+		
+
+		<div class="row">
+		<div class="col">
+				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
+					<img src="..." class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a wider card with supporting text below as a natural
+							lead-in to additional content. This content is a little bit longer.</p>
+					</div>
+					<div class="card-footer">
+						<small class="text-body-secondary">Last updated 3 mins ago</small>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
+					<img src="..." class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a wider card with supporting text below as a natural
+							lead-in to additional content. This content is a little bit longer.</p>
+					</div>
+					<div class="card-footer">
+						<small class="text-body-secondary">Last updated 3 mins ago</small>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important;">
+					<img src="..." class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a wider card with supporting text below as a natural
+							lead-in to additional content. This content is a little bit longer.</p>
+					</div>
+					<div class="card-footer">
+						<small class="text-body-secondary">Last updated 3 mins ago</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- favorite books -->
 	</div>
 	<!-- ADD MODAL -->
 	<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -5rem">
@@ -89,14 +141,14 @@
 						<div class="row">
 							<div class="col-sm-3">
 								<div class="form-group">
-									<label for="name">Name</label>
-									<input type="text" class="form-control" id="name" name="name">
+									<label for="title">Title</label>
+									<input type="text" class="form-control" id="title" name="title">
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="form-group">
-									<label for="username">Username</label>
-									<input type="text" class="form-control" id="username" name="username">
+									<label for="writer">writer</label>
+									<input type="text" class="form-control" id="writer" name="writer">
 								</div>
 							</div>
 							<div class="col-sm-3">
