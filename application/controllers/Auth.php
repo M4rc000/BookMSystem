@@ -8,7 +8,8 @@ class Auth extends CI_Controller {
         $this->load->library('form_validation');
     }
 	
-    public function index(){
+    public function index()
+    {
         if ($this->session->userdata('email')) {
             redirect('user');
         }
@@ -107,29 +108,36 @@ class Auth extends CI_Controller {
             $this->load->view('auth/registration',$data);
             $this->load->view('templates/auth_footer');
         } else {
-            $email = $this->input->post('email', true);
+            $email = $this->input->post('email', true);                     
+            $token = mt_rand(100000, 999999);
+            $username = $this->input->post('username');
+
             $data = [
                 'name' => htmlspecialchars($this->input->post('name', true)),
-                'username' => htmlspecialchars($this->input->post('username', true)),
+                'username' => htmlspecialchars($username),
                 'email' => htmlspecialchars($email),
                 'image' => 'default.webp',
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'date_of_birth' => '',
                 'place_of_birth' => '',
                 'gender' => '',
-                'role_id' => 1,
-                'is_active' => 1,
-                'date_joined' => date('d-m-Y H:i:s')
+                'role_id' => 1, 
+                'is_active' => 0,
+                'date_joined' => date('d-m-Y H:i:s'),
+                'token' => $token,
+                'date_created_token' => date('d-m-Y H:i:s')
             ];
 
             $this->db->insert('user', $data);
-            $this->session->set_flashdata('registration','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Registration successfull :), Let\'s Login
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>');
-          redirect('auth');
+            $this->_sendEmail($token, 'verify', $username);
+
+            $this->session->set_flashdata('registration', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Registration successful :), Please check your email to activate your account
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            redirect('auth');
         }
     }
 
@@ -197,39 +205,60 @@ class Auth extends CI_Controller {
         }
 	}
 
-    // public function forgotpassword(){
-    //     $data['title'] = 'Forgot Password Page';
-    //     $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
-    //     $this->load->view('templates/auth_header', $data);
-    //     $this->load->view('auth/forgotpassword');
-    //     $this->load->view('templates/auth_footer');
-    // }
+    public function _sendEmail($token, $type, $username){
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'bmsystemofficiall@gmail.com',
+            'smtp_pass' => 'depwctpfacpoobyo', 
+            'smtp_port' => 465, 
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+        ];
+                            
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        $this->email->from('bmsystemofficiall@gmail.com', 'BMS');
+        $this->email->to($this->input->post('email'));
 
-    // private function _sendemail(){
-    //     // $config = Array(
-    //     //     'protocol' => 'smtp',
-    //     //     'smtp_host' => 'ssl://smtp.googlemail.com',
-    //     //     'smtp_user' => 'bmsystemofficiall@gmail.com',
-    //     //     'smtp_pass' => 'bmsystemofficial03111990',
-    //     //     'smtp_port' => 465,
-    //     //     'mailtype' => 'html',
-    //     //     'starttls'  => true,
-    //     //     'newline'   => "\r\n"
-    //     // );
-        
-    //     $this->load->library('email');
-    //     $this->email->from('bmsofficiall@gmail.com', 'BMS Official');
-    //     $this->email->to('marcoantoniomadgaskar@gmail.com');
-    //     $this->email->subject('Testing');
-    //     $this->email->message('Hello World');
-    //     $this->email->send();
+        if($type == 'verify'){
+            $this->email->subject('Account Activation');
+            $this->email->message('Hi, ' . $username . '<br>' . 'The OTP code is: ' . $token);
+            $this->email->send();
+        }
+        // else{} forgot password
+    }
 
-    //     if ($this->email->send()) {
-    //         $_SESSION['message_email'] = 'berhasil';
-    //         return true; 
-    //     } else {
-    //         $this->email->print_debugger();
-    //         die;
-    //     }        
-    // }
+    public function verify(){
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if($user){
+            $user_token = $this->db->get_where('user', ['token' => $token])->row_array();
+            if($user_token){
+
+            }
+            else{
+                $this->session->set_flashdata('registration', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Account activation failed : <b>Wrong Token</b>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+                redirect('auth');
+            }
+        }
+        else{
+            $this->session->set_flashdata('registration', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Account activation failed : <b>Wrong Email</b>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            redirect('auth');
+        }
+    }
 }

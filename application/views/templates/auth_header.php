@@ -15,6 +15,25 @@
 	<link rel="shortcut icon" href="<?= base_url('assets'); ?>/images/favicon.png" />
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/mdi/css/materialdesignicons.min.css">
 	<link rel="shortcut icon" href="<?= base_url('assets'); ?>/images/favicon.png" />
+	<style>			
+		::-webkit-scrollbar {
+			width: 12px;
+		}
+
+			/* Track */
+		::-webkit-scrollbar-track {
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+		}
+
+			/* Handle */
+		::-webkit-scrollbar-thumb {
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+		}
+	</style>
 </head>
 
 <body>

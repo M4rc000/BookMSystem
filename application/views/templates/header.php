@@ -19,5 +19,24 @@
 	<script src="<?= base_url('assets'); ?>/js/dataTables.js"></script>
 	<script src="<?= base_url('assets'); ?>/vendors/datatables.net/jquery.dataTables.js"></script>
 	<script src="<?= base_url('assets'); ?>/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+	<style>			
+		::-webkit-scrollbar {
+			width: 12px;
+		}
+
+			/* Track */
+		::-webkit-scrollbar-track {
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+		}
+
+			/* Handle */
+		::-webkit-scrollbar-thumb {
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+		}
+	</style>
 </head>
 <body>

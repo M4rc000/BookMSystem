@@ -1,10 +1,10 @@
 <div class="container-scroller">
 	<div class="container-fluid page-body-wrapper full-page-wrapper">
 		<div class="content-wrapper d-flex align-items-center auth px-0"
-			style="background-image: url('');">
+			style="background-image: url('<?= base_url('assets'); ?>/images/auth/register.jpg'); background-repeat: no-repeat; background-size: cover;">
 			<div class="container-form row w-100 mx-0 ">
 				<div class="container-form-2 col-lg-4 mx-auto">
-					<div class="auth-form-light text-left py-5 px-4 px-sm-5 rounded-lg">
+					<div class="auth-form-light text-left py-5 px-4 px-sm-5 rounded-lg" style="backdrop-filter: blur(1px); opacity: 0.9;background-image: url(<?= base_url('assets');?>/images/auth/memphis-colorful.png)">
 						<h3 class="font-weight-light">Register</h3>
 						<form class="pt-5" action="<?= base_url('auth/registration'); ?>" method="POST">
 							<div class="form-group">

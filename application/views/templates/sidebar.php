@@ -36,8 +36,11 @@
               
                <?php
                   $current_url = $this->uri->segment(1);
-                  foreach ($subMenu as $sm) : ?>
-                  
+                  foreach ($subMenu as $sm) : 
+                    // var_dump($current_url);
+                    // echo '<br>';
+                    // var_dump($sm['url']); ?>
+                    
                       <li class="nav-item <?= ($current_url === $sm['url']) ? 'active' : ''; ?>">
                           <a class="nav-link" href="<?= base_url($sm['url']); ?>">
                               <i class="<?= $sm['icon']; ?>"></i>

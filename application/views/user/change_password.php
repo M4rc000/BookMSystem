@@ -1,10 +1,11 @@
 <div class="content-wrapper">
-<nav aria-label="breadcrumb">
+	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a><?= ucfirst($menus); ?></a></li>
 			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
 		</ol>
 	</nav>
+	<br>
 	<div class="card shadow">
 		<div class="card-body">
 			<div class="container">
@@ -21,7 +22,7 @@
 												<label class="col-sm-3 col-form-label">Password</label>
 												<div class="col-sm-9">
 													<input type="password" class="form-control" name="old_password" id="old_password"
-														placeholder="old password">
+														placeholder="old password" value="">
 												</div>
 											</div>
 										</div>
