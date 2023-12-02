@@ -76,7 +76,7 @@
 		</div>
 
 		<!-- favorite books -->
-		<div class="bg-body-secondary shadow p-5 rounded">
+		<div class="shadow p-5">
 		<div class="row justify-content-center border-bottom mb-3 bg-dark align-items-center">
 			<p class="fs-1 text-white">Favorite Book</p>
 		</div>
