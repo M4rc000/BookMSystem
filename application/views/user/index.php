@@ -10,6 +10,12 @@
     }
 </style>
 <div class="content-wrapper">
+<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a><?= ucfirst($menus); ?></a></li>
+			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
+		</ol>
+	</nav>
 	<div class="row">
 		<div class="col-md-2 text-center">
 			<div class="card shadow p-1"

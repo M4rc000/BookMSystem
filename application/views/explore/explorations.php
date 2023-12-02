@@ -1,5 +1,11 @@
 <div class="content-wrapper" style="background-color: rgb(237,237,237);">
 	<div class="container">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a><?= ucfirst($menus); ?></a></li>
+			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
+		</ol>
+	</nav>
 		<div class="card shadow" style="border-radius: 5px">
 				<div class="card-body p-3" style="height: 80px;">
 					<div class="row">
