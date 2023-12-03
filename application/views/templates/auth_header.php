@@ -15,6 +15,8 @@
 	<link rel="shortcut icon" href="<?= base_url('assets'); ?>/images/favicon.png" />
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/mdi/css/materialdesignicons.min.css">
 	<link rel="shortcut icon" href="<?= base_url('assets'); ?>/images/favicon.png" />
+	<script src="<?= base_url('assets'); ?>/js/jquery.js"></script>
+
 	<style>			
 		::-webkit-scrollbar {
 			width: 12px;

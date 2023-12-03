@@ -13,7 +13,9 @@
 				<div class="row mb-4">
 					<div class="col" style="margin-left: -1rem">
 						<div class="col-md-3">
-							<button class="btn btn-primary ml-1" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New Book</span></button>
+							<button class="btn btn-primary ml-1" data-bs-toggle="modal" data-bs-target="#AddModal"><i
+									class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New
+									Book</span></button>
 						</div>
 					</div>
 				</div>
@@ -32,7 +34,8 @@
 					</div>
 					<div class="col-md-9">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username">
+							<input type="text" class="form-control" placeholder="Recipient's username"
+								aria-label="Recipient's username">
 							<div class="input-group-append">
 								<button class="btn btn-sm btn-primary" type="button">Search</button>
 							</div>
@@ -41,41 +44,51 @@
 				</div>
 				<div class="row mt-5">
 					<?php $number = 0; foreach($books as $book) : $number+=1;?>
-						<div class="col-md-4">
-							<div class="card shadow" style="border-radius: 20px 20px 5px 5px !important; background-color: hsl(0,0%,100%)">
-								<div class="cover-image m-2 position-relative">
-									<img src="<?= base_url('assets'); ?>/images/books/<?= $book['image'] ?>" class="card-img-top"
-										alt="..." style="width: 100%; height: 20vw; border-radius: 20px 20px 5px 5px !important;">
-										<div class="cover-favorites position-absolute" style="border-radius: 20px; background-color: red; width: 25px; height: 25px; top:0; right:0; margin-right:10px; margin-top:5px;">
-											<span class="mdi mdi-star-outline" style="font-size: 20px"></span>
-										</div>
-								</div>
-								<div class="card-body">
-									<h5 class="card-title text-center"><?= $book['name']; ?></h5>
-									<p class="d-inline-flex">
-										<center>
-											<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="height: 20px; line-height: 1px; margin-top: -2rem;">
-										 		Details
-											</a>
-											<a class="btn btn-primary" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="height: 20px; line-height: 1px; margin-top: -2rem;">
-										 		See
-											</a>
-										</center>
-									</p>
-									<div class="collapse" id="collapseExample" style="background-color: #ededed; border-radius: 10px">
-										<div class="card card-body"  style="background-color: #ededed;">
-											<p class="card-text"><strong>Genre : </strong><?= $book['genre']; ?></p>
-											<p class="card-text"><strong>Sheet : </strong><?= $book['sheet']; ?></p>
-											<p class="card-text"><strong>Author : </strong><?= $book['author']; ?></p>
-											<p class="card-text"><strong>Publisher : </strong><?= $book['publisher']; ?></p>
-										</div>
+					<div class="col-md-4">
+						<div class="card shadow"
+							style="border-radius: 20px 20px 5px 5px !important; background-color: hsl(0,0%,100%)">
+							<!-- <div class="cover-image m-2 position-relative"> -->
+								<img src="<?= base_url('assets'); ?>/images/books/<?= $book['image'] ?>"
+									class="card-img-top" alt="..."
+									style="width: 100%; height: 20vw; border-radius: 20px 20px 0 0 !important;">
+							<!-- </div> -->
+							<div class="card-body">
+								<h5 class="card-title text-center"><?= $book['name']; ?></h5>
+								<p class="d-inline-flex">
+									<center>
+										<a class="btn btn-primary" href="#collapseExample" role="button"
+											aria-expanded="false" aria-controls="collapseExample"
+											style="height: 20px; line-height: 1px; margin-top: -2rem;">
+											<span class="mdi mdi-book-open-variant" style="font-size: 20px;"></span>
+										</a>
+										<a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample"
+											role="button" aria-expanded="false" aria-controls="collapseExample"
+											style="height: 20px; line-height: 1px; margin-top: -2rem;">
+											<strong>
+												Details
+											</strong>
+										</a>
+										<button class="btn btn-info" id="btn-favorite"
+											style="height: 20px; line-height: 1px; margin-top: -2rem;">
+											<i class="mdi mdi-star-outline" id="favorite" style="margin-top: -5rem; font-size: 25px;"></i>
+										</button>
+									</center>
+								</p>
+								<div class="collapse" id="collapseExample"
+									style="background-color: #ededed; border-radius: 10px">
+									<div class="card card-body" style="background-color: #ededed;">
+										<p class="card-text"><strong>Genre : </strong><?= $book['genre']; ?></p>
+										<p class="card-text"><strong>Sheet : </strong><?= $book['sheet']; ?></p>
+										<p class="card-text"><strong>Author : </strong><?= $book['author']; ?></p>
+										<p class="card-text"><strong>Publisher : </strong><?= $book['publisher']; ?></p>
 									</div>
 								</div>
-								<div class="card-footer" style="margin-top: -1rem;">
-									<small class="text-body-secondary">Last updated 3 mins ago</small>
-								</div>
+							</div>
+							<div class="card-footer" style="margin-top: -1rem;">
+								<small class="text-body-secondary">Last updated 3 mins ago</small>
 							</div>
 						</div>
+					</div>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -83,9 +96,7 @@
 	</div>
 </div>
 
-
-
-<!-- ADD MODAL -->
+	<!-- ADD MODAL -->
 <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
 	style="margin-top: -5rem">
 	<div class="modal-dialog modal-lg">
@@ -187,3 +198,9 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$('#btn-favorite').on('click', function(){
+		$('#favorite').toggleClass('mdi-star-outline mdi-star');
+	});
+</script>

@@ -9,28 +9,16 @@
 									<?= $this->session->flashdata('registration'); ?>
 								<?php } ?>
 								<?php if ($this->session->flashdata('logout') != '') { ?>
-									<div class="alert alert-danger alert-dismissible fade show" role="alert">
-										You have been logged out!
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
+									<?= $this->session->flashdata('logout'); ?>
 								<?php } ?>
 								<?php if ($this->session->flashdata('wrong_username') != '') { ?>
-									<div class="alert alert-danger alert-dismissible fade show" role="alert">
-										Your username has not been registered
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
+									<?= $this->session->flashdata('wrong_username'); ?>
+								<?php } ?>
+								<?php if ($this->session->flashdata('not_active_username') != '') { ?>
+									<?= $this->session->flashdata('not_active_username'); ?>
 								<?php } ?>
 								<?php if ($this->session->flashdata('wrong_password') != '') { ?>
-									<div class="alert alert-danger alert-dismissible fade show" role="alert">
-										Your password is not correct or valid!
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
+									<?= $this->session->flashdata('wrong_password'); ?>
 								<?php } ?>
 
 								<form class="pt-3" action="<?= base_url('auth'); ?>" method="POST">

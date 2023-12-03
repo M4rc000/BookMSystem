@@ -23,23 +23,23 @@ class Admin_model extends CI_Model {
     
    public function getAllSubMenu(){
        return $this->db->get('user_sub_menu')->result_array();
-   }
+    }
 
    public function getAllBooks(){
        return $this->db->get('books')->result_array();
-   }
+    }
 
    // UPDATE DATA
    public function updateData($table, $id, $Data){
       $this->db->where('id',$id);  
       $this->db->update($table, $Data);
-  }
+    } 
 
    // DELETE DATA
    public function deleteData($table, $id){
         $this->db->where('id',$id);
         $this->db->delete($table);
-  }
+    }
 
   // MESSAGE
     public function displayAlert() {
