@@ -47,11 +47,11 @@
 					<div class="col-md-4">
 						<div class="card shadow"
 							style="border-radius: 20px 20px 5px 5px !important; background-color: hsl(0,0%,100%)">
-							<div class="cover-image m-2 position-relative">
+							<!-- <div class="cover-image m-2 position-relative"> -->
 								<img src="<?= base_url('assets'); ?>/images/books/<?= $book['image'] ?>"
 									class="card-img-top" alt="..."
-									style="width: 100%; height: 20vw; border-radius: 20px 20px 5px 5px !important;">
-							</div>
+									style="width: 100%; height: 20vw; border-radius: 20px 20px 0 0 !important;">
+							<!-- </div> -->
 							<div class="card-body">
 								<h5 class="card-title text-center"><?= $book['name']; ?></h5>
 								<p class="d-inline-flex">

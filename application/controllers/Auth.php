@@ -74,13 +74,12 @@ class Auth extends CI_Controller {
                 redirect('auth');
             }
         } else {
-            $this->session->set_flashdata('wrong_username','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Your username has not been registered
+            $this->session->set_flashdata('not_active_username','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Your username has not been activated
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-            echo "username haven't";
             redirect('auth');
         }
     }
@@ -115,13 +114,13 @@ class Auth extends CI_Controller {
             $data = [
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'username' => htmlspecialchars($username),
-                'email' => htmlspecialchars($email),
+                'email' => $email,
                 'image' => 'default.webp',
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'date_of_birth' => '',
                 'place_of_birth' => '',
                 'gender' => '',
-                'role_id' => 1, 
+                'role_id' => 2, 
                 'is_active' => 0,
                 'date_joined' => date('d-m-Y H:i:s'),
                 'token' => $token,
@@ -131,13 +130,15 @@ class Auth extends CI_Controller {
             $this->db->insert('user', $data);
             $this->_sendEmail($token, 'verify', $username);
 
+            $this->session->set_userdata('verification_email', $email);
             $this->session->set_flashdata('registration', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                Registration successful :), Please check your email to activate your account
+                Registration successful :), Please check the otp code that sent to your email to activate your account
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            redirect('auth');
+            $_SESSION['message'] = 'security';
+            redirect('auth/verification');
         }
     }
 
@@ -156,52 +157,49 @@ class Auth extends CI_Controller {
     }
 
     public function verification()
-	{
+    {
+        if (!$_SESSION['message']) {
+            redirect('auth');
+        } // Handle if user try access by typing manually in url
+        unset($_SESSION['message']);
+
+        $data['title'] = 'Verification Page';
         $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
-        if ($this->session->userdata('email')) {
-            redirect('user');
-        }
 
-        $this->form_validation->set_rules('name', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'This email has already registered!'
-        ]);
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]', [
-            'min_length' => 'Password too short!'
-        ]);
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[10]|regex_match[/^[a-zA-Z0-9_]+$/]|is_unique[user.username]',[
-            'is_unique' => 'This username has already used!']);
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Register Page';
-            $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
+        if (!$this->input->post()) {
             $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth/verification',$data);
+            $this->load->view('auth/verification', $data);
             $this->load->view('templates/auth_footer');
         } else {
+            $token = $this->input->post('token', true);
             $email = $this->input->post('email', true);
-            $data = [
-                'name' => htmlspecialchars($this->input->post('name', true)),
-                'username' => htmlspecialchars($this->input->post('username', true)),
-                'email' => htmlspecialchars($email),
-                'image' => 'default.webp',
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'date_of_birth' => '',
-                'place_of_birth' => '',
-                'gender' => '',
-                'role_id' => 1,
-                'is_active' => 1,
-                'date_joined' => date('d-m-Y H:i:s')
-            ];
 
-            $this->db->insert('user', $data);
-            $this->session->set_flashdata('registration','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Registration successfull :), Let\'s Login
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>');
-          redirect('auth');
+            $user = $this->db->get_where('user', ['token' => $token, 'email' => $email])->row();
+
+            if($user){
+                $this->session->set_flashdata('registration','<div class="alert alert-success alert-dismissible fade show" role="alert">
+                Registration successfull :), Let\'s Login
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+
+                $this->db->where('email', $email);
+                $this->db->update('user', ['is_active' => 1]);
+                redirect('auth');
+            }
+            else{
+                // $this->db->insert('user', $data);
+                // $this->session->set_flashdata('registration','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                // Registration successfull :), Let\'s Login
+                // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                // <span aria-hidden="true">&times;</span>
+                // </button>
+                // </div>');
+                // redirect('auth');
+                echo 'tidak ada';
+            }
+
         }
 	}
 
@@ -216,7 +214,8 @@ class Auth extends CI_Controller {
             'charset' => 'utf-8',
             'newline' => "\r\n",
         ];
-                            
+
+        $email_template = $this->load->view('templates/email', ['token' => $token, 'username' => $username], true);
         $this->load->library('email', $config);
         $this->email->initialize($config);
         $this->email->from('bmsystemofficiall@gmail.com', 'BMS');
@@ -224,41 +223,9 @@ class Auth extends CI_Controller {
 
         if($type == 'verify'){
             $this->email->subject('Account Activation');
-            $this->email->message('Hi, ' . $username . '<br>' . 'The OTP code is: ' . $token);
+            $this->email->message($email_template);
             $this->email->send();
         }
         // else{} forgot password
-    }
-
-    public function verify(){
-        $email = $this->input->get('email');
-        $token = $this->input->get('token');
-
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
-
-        if($user){
-            $user_token = $this->db->get_where('user', ['token' => $token])->row_array();
-            if($user_token){
-
-            }
-            else{
-                $this->session->set_flashdata('registration', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Account activation failed : <b>Wrong Token</b>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
-                redirect('auth');
-            }
-        }
-        else{
-            $this->session->set_flashdata('registration', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Account activation failed : <b>Wrong Email</b>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
-            redirect('auth');
-        }
     }
 }
