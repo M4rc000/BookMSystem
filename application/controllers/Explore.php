@@ -12,6 +12,11 @@ class Explore extends CI_Controller {
 	
 	public function index()
 	{
+                $url = $_SERVER['REQUEST_URI'];
+                if ($url !== '/2023/BookMSystem/explore/') {
+                        header("Location: " . base_url('explore/'));
+                        exit();
+                }
                 $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
                 $data['countries'] = $this->db->get('countries')->result_array();
                 $data['menus'] = $this->uri->segment(1);

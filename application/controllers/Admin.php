@@ -5,16 +5,22 @@ class Admin extends CI_Controller {
 
     public function __construct()
     {
-            parent::__construct();
-            is_logged_in();
-            $this->load->library('form_validation');
-            $this->load->model('Admin_model','AModel');
+        parent::__construct();
+        is_logged_in();
+        $this->load->library('form_validation');
+        $this->load->model('Admin_model','AModel');
     }
 	
 	public function index()
 	{
-        $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $url = $_SERVER['REQUEST_URI'];
+        if ($url !== '/2023/BookMSystem/admin/') {
+            header("Location: " . base_url('admin/'));
+            exit();
+        }
+            
+        $data['title'] = 'Dashboard';
         $data['menu'] = $this->uri->segment(1);
 
         $this->load->view('templates/header', $data);
@@ -33,7 +39,7 @@ class Admin extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('admin/manage_user', $data);
         $this->load->view('templates/footer');
     }
@@ -52,7 +58,7 @@ class Admin extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);   
-        $this->load->view('templates/sidebar');   
+        $this->load->view('templates/sidebar',$data);   
         $this->load->view('admin/manage_user_role',$data);
         $this->load->view('templates/footer');
 	}
