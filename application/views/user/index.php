@@ -16,6 +16,7 @@
 			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
 		</ol>
 	</nav>
+	<br>
 	<div class="row">
 		<div class="col-md-2 text-center">
 			<div class="card shadow p-1"

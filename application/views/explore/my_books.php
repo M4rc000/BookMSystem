@@ -47,11 +47,9 @@
 					<div class="col-md-4">
 						<div class="card shadow"
 							style="border-radius: 20px 20px 5px 5px !important; background-color: hsl(0,0%,100%)">
-							<!-- <div class="cover-image m-2 position-relative"> -->
 								<img src="<?= base_url('assets'); ?>/images/books/<?= $book['image'] ?>"
 									class="card-img-top" alt="..."
 									style="width: 100%; height: 20vw; border-radius: 20px 20px 0 0 !important;">
-							<!-- </div> -->
 							<div class="card-body">
 								<h5 class="card-title text-center"><?= $book['name']; ?></h5>
 								<p class="d-inline-flex">
@@ -94,38 +92,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="theme-setting-wrapper">
-        <div id="settings-trigger"><i class="ti-settings"></i></div>
-        <div id="theme-settings" class="settings-panel">
-          <i class="settings-close ti-close"></i>
-          <p class="settings-heading bold">DARK</p>
-		  <div id="">
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/dark/stardust.png);"><input type="radio" name="ganti-theme-background" value="images/content-background/dark/stardust.png" class="mr-3"></input>Stardust</div>
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/dark/prism.png);"><input type="radio" name="ganti-theme-background" value="images/content-background/dark/prism.png" class="mr-3"></input>Prism</div>
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/dark/webb-dark.png);"><input type="radio" name="ganti-theme-background" value="images/content-background/dark/webb-dark.png" class="mr-3"></input>Webb-Dark</div>
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/dark/dark-grey-terrazzo.png);"><input type="radio" name="ganti-theme-background" value="images/content-background/dark/dark-grey-terrazzo.png" class="mr-3"></input>Dark-Grey-Terrazzo</div>
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/dark/wheat.webp);"><input type="radio" name="ganti-theme-background" value="images/content-background/dark/wheat.webp" class="mr-3"></input>Wheat</div>
-		 </div>
-		 <p class="settings-heading bold pt-3">LIGHT</p>
-		  <div id="">
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/light/leaves-pattern.png);"><input type="radio" name="ganti-theme-background" value="images/content-background/light/leaves-pattern.png" class="mr-3"></input>Leaves- Pattern</div>
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/light/palm-leaf.webp);"><input type="radio" name="ganti-theme-background" value="images/content-background/light/palm-leaf.webp" class="mr-3"></input>Palm - Leaf</div>
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/light/spring.png);"><input type="radio" name="ganti-theme-background" value="images/content-background/light/spring.png" class="mr-3"></input>Spring</div>
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/light/sakura.png);"><input type="radio" name="ganti-theme-background" value="images/content-background/light/sakura.png" class="mr-3"></input>Sakura</div>
-          <div class="sidebar-bg-options selected text-white" id="ganti-background" style="background-image: url(<?= base_url('assets');?>/images/content-background/light/restaurant.webp);"><input type="radio" name="ganti-theme-background" value="images/content-background/light/restaurant.webp" class="mr-3"></input>Restaurant</div>
-		 </div>
-          <p class="settings-heading mt-2">HEADER SKINS</p>
-          <div class="color-tiles mx-0 px-4">
-            <div class="tiles success"></div>
-            <div class="tiles warning"></div>
-            <div class="tiles danger"></div>
-            <div class="tiles info"></div>
-            <div class="tiles dark"></div>
-            <div class="tiles default"></div>
-          </div>
-        </div>
-      </div>
 </div>
+
 
 	<!-- ADD MODAL -->
 <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -234,19 +202,5 @@
 <script>
 	$('#btn-favorite').on('click', function(){
 		$('#favorite').toggleClass('mdi-star-outline mdi-star');
-	});
-
-	$(document).ready(function() {
-    // Event handler untuk perubahan pada radio button
-    $('input[type="radio"]').change(function() {
-      // Mendapatkan nilai radio button yang dipilih
-      var selectedValue = $('input[name="ganti-theme-background"]:checked').val();
-
-      // Mengubah warna latar belakang sesuai dengan nilai radio
-      $('.content-wrapper').attr('style', 'background-image: url(<?= base_url('assets');?>/' + selectedValue);
-    });
-  });
-	
-
-	
+	});	
 </script>

@@ -1,7 +1,11 @@
 <?php $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); ?>
+<style>
+	.footer-dark{
+		background-color: rgb(40,47,58);
+	}
+</style>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <div class="container-scroller">
-	<!-- partial:partials/_navbar.html -->
 	<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" id="topbar">
 		<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 			<a class="navbar-brand brand-logo mr-5" href="index.html"><img src="<?= base_url('assets'); ?>/images/logo.svg" class="mr-2"
@@ -14,7 +18,7 @@
 			</button>
 			<ul class="navbar-nav navbar-nav-right">
 				<li class="nav-item dropdown pr-5 pt-2">
-					<a class="nav-link count-indicator dropdown-toggle" id="time">test</a>
+					<a class="nav-link count-indicator dropdown-toggle" id="time">Time</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link count-indicator dropdown-toggle" id="dark-mode" href="#">
@@ -115,12 +119,14 @@
 			if (localStorage.getItem('darkMode') === 'true') {
 				$('#topbar').addClass('navbar-dark');
 				$('body').addClass('sidebar-dark');
+				$('footer').addClass('footer-dark');
 				$('#dark-mode i').removeClass('mdi-brightness-4').addClass('mdi-brightness-5');
 			}
 			
 			$('#dark-mode').click(function() {
 				$('#topbar').toggleClass('navbar-dark');
 				$('body').toggleClass('sidebar-dark');
+				$('footer').toggleClass('footer-dark');
 				var icon = $('#dark-mode i');
 				if (icon.hasClass('mdi-brightness-4')) {
 					icon.removeClass('mdi-brightness-4').addClass('mdi-brightness-5');
@@ -134,7 +140,17 @@
 
 			const RealTime = {
 				getCurrentTime: () => {
-					return new Date().toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+					const options = {
+					year: 'numeric',
+					month: 'long',
+					day: '2-digit',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit',
+					hour12: true
+					};
+
+					return new Date().toLocaleString('en-US', options);
 				}
 			};
 
