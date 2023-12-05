@@ -1,17 +1,4 @@
 /* Documentation sample */
-
-function loadPage(page) {
-  var img = $("<img />");
-  img.load(function () {
-    var container = $(".sample-docs .p" + page);
-    img.css({ width: container.width(), height: container.height() });
-    img.appendTo($(".sample-docs .p" + page));
-    container.find(".loader").remove();
-  });
-
-  img.attr("src", "files/pages/" + (page - 2) + ".png");
-}
-
 function addPage(page, book) {
   var id,
     pages = book.turn("pages");

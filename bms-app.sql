@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 04:13 PM
+-- Generation Time: Dec 04, 2023 at 05:11 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -30,18 +30,24 @@ SET time_zone = "+00:00";
 CREATE TABLE `books` (
   `book_id` int(255) NOT NULL,
   `name` varchar(30) NOT NULL,
+  `genre` varchar(35) NOT NULL,
+  `sheet` int(255) NOT NULL,
   `author` varchar(15) NOT NULL,
   `publisher` varchar(30) NOT NULL,
+  `image` varchar(128) NOT NULL,
+  `is_active` varchar(2) NOT NULL,
   `crtby` varchar(20) NOT NULL,
-  `crtdt` date NOT NULL
+  `crtdt` date NOT NULL,
+  `updby` varchar(35) NOT NULL,
+  `upddt` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`book_id`, `name`, `author`, `publisher`, `crtby`, `crtdt`) VALUES
-(1, 'Beauty and the Beast', '', 'Pada suatu waktu di sebuah des', 'System', '2023-11-05');
+INSERT INTO `books` (`book_id`, `name`, `genre`, `sheet`, `author`, `publisher`, `image`, `is_active`, `crtby`, `crtdt`, `updby`, `upddt`) VALUES
+(1, 'Beauty and the Beast', 'Romance', 0, '', '', 'romance.jpg', '1', 'System', '2023-11-05', '', '');
 
 -- --------------------------------------------------------
 
@@ -263,6 +269,7 @@ INSERT INTO `countries` (`country_id`, `country_name`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
+  `user_code` varchar(100) NOT NULL,
   `name` varchar(128) NOT NULL,
   `username` varchar(30) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -274,6 +281,8 @@ CREATE TABLE `user` (
   `country` varchar(30) NOT NULL,
   `date_joined` varchar(30) NOT NULL,
   `is_active` int(2) NOT NULL,
+  `token` varchar(128) NOT NULL,
+  `date_created_token` date DEFAULT NULL,
   `role_id` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -281,12 +290,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `username`, `email`, `password`, `image`, `gender`, `place_of_birth`, `date_of_birth`, `country`, `date_joined`, `is_active`, `role_id`) VALUES
-(1, 'Marco', 'Prime', 'marcoantoniomadgaskar@gmail.com', '$2y$10$DMF.T6mKOkmOUmpuH9mTseHBoOtZj4hX2TVkt4B6DMieiROqdwXQi', 'default.webp', 'Male', 'Bogor', '03-11-2003', 'Indonesia', '22-10-2023 10:49:21', 1, 1),
-(2, 'Robby', 'Robbs', 'robbyarsyadani@gmail.com', '$2y$10$DMF.T6mKOkmOUmpuH9mTseHBoOtZj4hX2TVkt4B6DMieiROqdwXQi', 'default.webp', 'Male', '', '', 'Indonesia', '22-10-2023 10:51:35', 1, 1),
-(3, 'Hansen', 'Hnsz', 'Hansenhoswari@gmail.com', '$2y$10$DMF.T6mKOkmOUmpuH9mTseHBoOtZj4hX2TVkt4B6DMieiROqdwXQi', 'default.webp', 'Male', '', '', 'Indonesia', '22-10-2023 10:52:37', 1, 1),
-(4, 'Ucup', 'cupcup', 'ucup@gmail.com', '$2y$10$y2l9OIanr3f62MzBOe5kA.ir.M6KcvH/CPa42kkzJwn7irjuXrBFO', 'default.webp', '', '', '', '', '16-11-2023 19:50:32', 1, 2),
-(5, 'Ucup', 'MSI5992643', 'marco@gmail.com', '12345', 'Marco7.jpg', NULL, NULL, NULL, '', '', 0, 1);
+INSERT INTO `user` (`id`, `user_code`, `name`, `username`, `email`, `password`, `image`, `gender`, `place_of_birth`, `date_of_birth`, `country`, `date_joined`, `is_active`, `token`, `date_created_token`, `role_id`) VALUES
+(1, '', 'Marco', 'Prime', 'menggunakan392?gmail.com', '$2y$10$DMF.T6mKOkmOUmpuH9mTseHBoOtZj4hX2TVkt4B6DMieiROqdwXQi', 'default.webp', 'Male', 'Bogor', '03-11-2003', 'Indonesia', '22-10-2023 10:49:21', 1, '', NULL, 1),
+(2, '', 'Robby', 'Robbs', 'robbyarsyadani@gmail.com', '$2y$10$DMF.T6mKOkmOUmpuH9mTseHBoOtZj4hX2TVkt4B6DMieiROqdwXQi', 'default.webp', 'Male', '', '', 'Indonesia', '22-10-2023 10:51:35', 1, '', NULL, 1),
+(3, '', 'Hansen', 'Hnsz', 'Hansenhoswari@gmail.com', '$2y$10$DMF.T6mKOkmOUmpuH9mTseHBoOtZj4hX2TVkt4B6DMieiROqdwXQi', 'default.webp', 'Male', '', '', 'Indonesia', '22-10-2023 10:52:37', 1, '', NULL, 1),
+(30, '', 'Antonio', 'Ant', 'marcoantoniomadgaskar@gmail.com', '$2y$10$6M0sY7DtA3cEdmQ/CeXkFeGZmJsZ4LPnjUcRjuXICvPsYY8ls9jcS', 'default.webp', '', '', '', '', '03-12-2023 15:47:18', 1, '620004', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -376,9 +384,9 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (4, 1, 'Manage Menu', 'admin/manage_menu', 'ti-layout-tab', 1),
 (5, 1, 'Manage Sub-menu', 'admin/manage_sub_menu', 'ti-view-list-alt', 1),
 (6, 1, 'Manage Books', 'admin/manage_books', 'mdi mdi-book-open-page-variant', 1),
-(7, 2, 'My Profile', 'user', 'mdi mdi-account-card-details', 1),
+(7, 2, 'My Profile', 'user/', 'mdi mdi-account-card-details', 1),
 (8, 2, 'Change Password', 'user/change_password', 'ti-unlock', 1),
-(9, 3, 'My Books', 'explore', 'ti-book', 1),
+(9, 3, 'My Books', 'explore/', 'ti-book', 1),
 (10, 3, 'Explorations', 'explore/explorations', 'mdi mdi-compass-outline', 1),
 (11, 3, 'Collaborations', 'explore/collaborations', 'mdi mdi-compass-outline', 1),
 (12, 3, 'Explorations', 'explore/explorations', 'mdi mdi-compass-outline', 0),
@@ -450,7 +458,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`

@@ -154,9 +154,9 @@
             color: $sidebar-light-menu-active-color;
           }
         }
-        &.active {
-          background: $sidebar-light-menu-hover-bg;
-        }
+        // &.active {
+        //   background: $sidebar-light-menu-hover-bg;
+        // }
       }
     }
     &.sub-menu {
