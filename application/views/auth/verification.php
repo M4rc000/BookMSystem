@@ -24,8 +24,9 @@
 				<div class="container-form-2 col-lg-6 mx-auto">
 					<div class="auth-form-light text-left py-5 px-4 px-sm-5 rounded-lg" style="backdrop-filter: blur(1px);background-image: url(<?= base_url('assets');?>/images/auth/doodles.png);">
 						<h3 class="font-weight-light">Verification</h3>
-						<?php if ($this->session->flashdata('registration') != '') { ?>
+						<?php if ($this->session->flashdata('registration') != '' || $this->session->flashdata('otp_notfound') != '') { ?>
 									<?= $this->session->flashdata('registration'); ?>
+									<?= $this->session->flashdata('otp_notfound'); ?>
 						<?php } ?>
 						<div class="row justify-content-center">
 							<div class="col-md-12 text-center">
@@ -43,6 +44,7 @@
 									<div class="mt-3">
 										<button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Submit</button>
 									</div>
+									<?php unset($_SESSION['message']); ?>
 								</form>
 							</div>
 						</div>
@@ -50,9 +52,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- content-wrapper ends -->
 	</div>
-	<!-- page-body-wrapper ends -->
 </div>
 
 <script>
@@ -88,6 +88,4 @@
 			$('#token').val(data);
 		});
 	});
-
-
 </script>

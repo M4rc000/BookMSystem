@@ -128,11 +128,11 @@ class Auth extends CI_Controller {
             ];
 
             $this->db->insert('user', $data);
-            $this->_sendEmail($token, 'verify', $username);
+            $this->_sendEmail($token, 'verify', $username, $email);
 
             $this->session->set_userdata('verification_email', $email);
             $this->session->set_flashdata('registration', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                Registration successful :), Please check the otp code that sent to your email to activate your account
+                Please check the otp code that sent to your email to activate your account
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -157,26 +157,23 @@ class Auth extends CI_Controller {
     }
 
     public function verification()
-    {
-        if (!$_SESSION['message']) {
-            redirect('auth');
-        } // Handle if user try access by typing manually in url
-        unset($_SESSION['message']);
-
+    {   
         $data['title'] = 'Verification Page';
         $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
 
         if (!$this->input->post()) {
+            if (!$_SESSION['message']) {
+                redirect('auth/registration'); 
+            } // Handle user change url
             $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/verification', $data);
             $this->load->view('templates/auth_footer');
         } else {
-            $token = $this->input->post('token', true);
-            $email = $this->input->post('email', true);
+            $token = $this->input->post('token');
+            $email = $this->input->post('email');
+            $user = $this->db->get_where('user', ['token' => $token, 'email' => $email])->num_rows();
 
-            $user = $this->db->get_where('user', ['token' => $token, 'email' => $email])->row();
-
-            if($user){
+            if($user > 0){
                 $this->session->set_flashdata('registration','<div class="alert alert-success alert-dismissible fade show" role="alert">
                 Registration successfull :), Let\'s Login
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -189,21 +186,19 @@ class Auth extends CI_Controller {
                 redirect('auth');
             }
             else{
-                // $this->db->insert('user', $data);
-                // $this->session->set_flashdata('registration','<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                // Registration successfull :), Let\'s Login
-                // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                // <span aria-hidden="true">&times;</span>
-                // </button>
-                // </div>');
-                // redirect('auth');
-                echo 'tidak ada';
+                $_SESSION['message'] = 'security';
+                $this->session->set_flashdata('otp_notfound','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                The OTP code is not valid
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+                redirect('auth/verification');
             }
-
         }
 	}
 
-    public function _sendEmail($token, $type, $username){
+    public function _sendEmail($token, $type, $username, $email){
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -219,13 +214,121 @@ class Auth extends CI_Controller {
         $this->load->library('email', $config);
         $this->email->initialize($config);
         $this->email->from('bmsystemofficiall@gmail.com', 'BMS');
-        $this->email->to($this->input->post('email'));
+        $this->email->to($email);
 
         if($type == 'verify'){
             $this->email->subject('Account Activation');
             $this->email->message($email_template);
             $this->email->send();
         }
-        // else{} forgot password
+        else{
+            $this->email->subject('Password Recovery');
+            $this->email->message($email_template);
+            $this->email->send();
+        } 
+    }
+
+    public function forgotpassword(){
+        $data['title'] = 'Forgot Password';
+        $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
+
+        if (!$this->input->post()) {
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/forgotpassword', $data);
+            $this->load->view('templates/auth_footer');
+        }
+        else{
+            $key = $this->input->post('key');
+            $query = $this->db->get_where('user', array('email' => $key));
+            $result_count = $query->num_rows();
+            
+            if ($result_count > 0) {  
+                $token = mt_rand(100000, 999999);
+                $this->db->or_where('email', $key);
+                $result = $this->db->update('user', array('token' => $token));
+
+                if($result == TRUE){
+                    $query = $this->db->get_where('user', array('email' => $key))->row_array();
+                    $username = $query['username'];
+                    $email = $query['email'];
+                    $this->_sendEmail($token, 'forgot', $username, $email);
+
+                    $this->session->set_flashdata('success_send', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    The OTP code is already send to your email
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                    $this->session->set_userdata('email_', $email);
+                    header("Location: " . base_url('auth/forgotpassword'));
+                }
+                else{
+                    $this->session->set_flashdata('error', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Failed to send email verification
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                    header("Location: " . base_url('auth/forgotpassword'));
+                }
+            }
+            else{
+                $this->session->set_flashdata('email_notfound', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Email not found
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+                header("Location: " . base_url('auth/forgotpassword'));
+            } 
+        }
+    }
+
+    public function newpassword(){
+        
+        $data['title'] = 'Change Password';
+        $data['background'] = base_url('assets') . '/images/auth/lockscreen-bg.jpg';
+        
+        $token = $this->input->post('token');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $result = $this->db->get_where('user', array('token' => $token))->num_rows();
+        
+        if($result >= 1) {
+            if(!$this->input->post('token')) {
+                redirect('auth/forgotpassword');
+            } // Handle if user try access by typing manually in url
+            $user = $this->db->get_where('user', array('email' => $email))->row_array();
+            $data['userid'] = $user['id'];
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/newpassword', $data);
+            $this->load->view('templates/auth_footer');
+        }
+        elseif ($password || $password != NULL){
+            $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+            $userid = $this->input->post('userid');
+
+            $this->db->where('id', $userid);
+            $this->db->update('user', array('password' => $password));
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Password has been changed
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            header("Location: " . base_url('auth'));
+        }
+        else{
+            if(!$this->input->post('token')) {
+                redirect('auth/forgotpassword');
+            } // Handle if user try access by typing manually in url
+            $this->session->set_flashdata('otp_notfound', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    The OTP code not valid
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+            header("Location: ". base_url('auth/forgotpassword'));
+        }
     }
 }

@@ -20,6 +20,9 @@
 								<?php if ($this->session->flashdata('wrong_password') != '') { ?>
 									<?= $this->session->flashdata('wrong_password'); ?>
 								<?php } ?>
+								<?php if ($this->session->flashdata('success') != '') { ?>
+									<?= $this->session->flashdata('success'); ?>
+								<?php } ?>
 
 								<form class="pt-3" action="<?= base_url('auth'); ?>" method="POST">
 									<div class="form-group">
