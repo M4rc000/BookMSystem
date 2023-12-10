@@ -1,11 +1,16 @@
 
 <div class="content-wrapper">
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a><?= ucfirst($menu); ?></a></li>
-			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
-		</ol>
-	</nav>
+	<div class="row">
+		<div class="col-sm">
+			<div class="card shadow" style="border-bottom: 2px solid #4b49ac; height: 40px; border-radius: 5px">
+				<div class="card-body">
+					<h5 class="text-left mb-5" style="line-height: 0px; font-size: 14px; font-weight: 100;">
+						<span style="font-weight: 700;"><?= ucfirst($menu); ?></span> / <?= $title; ?>
+					</h5>
+				</div>
+			</div>
+		</div>
+	</div>
 	<br>
 	<div class="card shadow">
 		<div class="row justify-content-center">
@@ -163,7 +168,7 @@
           }]
       },
       legend: {
-          display: false
+          display: true
       },
       elements: {
         point: {
@@ -172,10 +177,11 @@
       }
 
   };
+
   if($("#userChart").length) {
     var lineChartCanvas = $("#userChart").get(0).getContext("2d");
     var lineChart = new Chart(lineChartCanvas, {
-      type: 'line',
+      type: 'bar',
       data: data,
       options: options
     });

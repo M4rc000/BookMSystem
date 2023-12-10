@@ -17,18 +17,15 @@
 				<span class="icon-menu"></span>
 			</button>
 			<ul class="navbar-nav navbar-nav-right">
-				<li class="nav-item dropdown pr-5 pt-2">
-					<a class="nav-link count-indicator dropdown-toggle" id="time">Time</a>
-				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link count-indicator dropdown-toggle" id="dark-mode" href="#">
+					<a class="nav-link count-indicator dropdown-toggle" id="dark-mode" href="#" style="font-size: 20px;">
 						<i class="mdi mdi-brightness-4 mx-0"></i>
 					</a>
 				</li>
 				<li class="nav-item dropdown pr-3 pt-1">
 					<a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
 						data-toggle="dropdown">
-						<i class="icon-bell mx-0"></i>
+						<i class="icon-bell mx-0 pt-1"></i>
 						<span class="count"></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -73,6 +70,16 @@
 								</p>
 							</div>
 						</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown pr-3">
+					<a class="nav-link" id="notificationDropdown" href="#"
+						data-toggle="dropdown">
+						<i class="mdi mdi-information-outline" style="line-height: 0px; font-size: 25px;"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+						aria-labelledby="notificationDropdown">
+						<p class="mb-0 font-weight-normal float-left dropdown-header" id="time"></p>
 					</div>
 				</li>
 				<li class="nav-item nav-profile dropdown pb-3">
@@ -137,7 +144,6 @@
 				}
 			});
 
-
 			const RealTime = {
 				getCurrentTime: () => {
 					const options = {
@@ -160,6 +166,5 @@
 
 			updateCurrentTime();
 			setInterval(updateCurrentTime, 1000);
-
 		});
 	</script>

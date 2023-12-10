@@ -1,25 +1,21 @@
 <div class="content-wrapper">
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a><?= ucfirst($menus); ?></a></li>
-			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
-		</ol>
-	</nav>
-	<br>
 	<div class="row">
-		<div class="col-sm justify-content-center">
-			<div class="card shadow" style="border-bottom: 2px solid #4b49ac; height: 60px; border-radius: 5px">
-				<div class="card-body text-center">
-					<h4><strong>TABLE BOOKS</strong></h4>
+		<div class="col-sm">
+			<div class="card shadow" style="border-bottom: 2px solid #4b49ac; height: 40px; border-radius: 5px">
+				<div class="card-body">
+					<h5 class="text-left mb-5" style="line-height: 0px; font-size: 14px; font-weight: 100;">
+						<span style="font-weight: 700;"><?= ucfirst($menus); ?></span> / <?= $title; ?>
+					</h5>
 				</div>
 			</div>
 		</div>
 	</div>
-	<br>
+	<br>	
 	<div class="row">
 		<div class="col-lg grid-margin stretch-card">
 			<div class="card shadow" style="border-left: 2px solid #ffc100;">
 				<div class="card-body">
+				<h4 class="text-center pt-2 pb-3"><strong>TABLE BOOKS</strong></h4>
 				<button class="btn btn-primary ml-3 mb-3" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New Book</span></button>
 					<div class="table-responsive py-3">
 						<table class="table wrap" id="tbl-book">
