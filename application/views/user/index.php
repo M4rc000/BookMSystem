@@ -10,7 +10,7 @@
     }
 </style>
 <div class="content-wrapper">
-<nav aria-label="breadcrumb">
+	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a><?= ucfirst($menus); ?></a></li>
 			<li class="breadcrumb-item active" aria-current="page"><?= $title; ?></li>
@@ -55,7 +55,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Name</label>
+												<label class="col-sm-3 col-form-label"><strong>Name</strong></label>
 												<div class="col-sm-9">
 													<input type="text" class="form-control" name="name" id="name"
 														placeholder="Name" value="<?= $user['name']; ?>">
@@ -64,7 +64,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Username</label>
+												<label class="col-sm-3 col-form-label"><strong>Username</strong></label>
 												<div class="col-sm-9">
 													<div class="input-group">
 														<div class="input-group-prepend">
@@ -80,7 +80,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Email</label>
+												<label class="col-sm-3 col-form-label"><strong>Email</strong></label>
 												<div class="col-sm-9">
 													<input class="form-control" type="email" name="email" id="email"
 														placeholder="Email" value="<?= $user['email']; ?>"/>
@@ -89,10 +89,10 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Gender</label>
+												<label class="col-sm-3 col-form-label"><strong>Gender</strong></label>
 												<div class="col-sm-9">
-												<select class="form-control text-dark">
-													<option value="">Select Gender</option>
+												<select class="js-example-basic-single text-dark">
+													<option value="" disabled>Select Gender</option>
 													<option value="Male" <?= $user['gender'] === 'Male' ? 'selected' : ''; ?>>Male</option>
 													<option value="Female" <?= $user['gender'] === 'Female' ? 'selected' : ''; ?>>Female</option>
 												</select>
@@ -103,7 +103,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Date of Birth</label>
+												<label class="col-sm-3 col-form-label"><strong>Date of Birth</strong></label>
 												<div class="col-sm-9">
 													<input class="form-control" type="date" name="dateofbirth"
 														id="dateofbirth" placeholder="dd/mm/yyyy" value="<?= $user['date_of_birth']; ?>">
@@ -112,7 +112,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Place of Birth</label>
+												<label class="col-sm-3 col-form-label"><strong>Place of Birth</strong></label>
 												<div class="col-sm-9">
 													<input class="form-control" type="text" name="placeofbirth"
 														id="placeofbirth" placeholder="City or Region" value="<?= $user['place_of_birth']; ?>">
@@ -123,7 +123,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Country</label>
+												<label class="col-sm-3 col-form-label"><strong>Country</strong></label>
 												<div class="col-sm-9">
 													<div class="form-group">
 													<select class="js-example-basic-single w-100" name="country" id="country">
@@ -143,7 +143,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Date Joined</label>
+												<label class="col-sm-3 col-form-label"><strong>Date Joined</strong></label>
 												<div class="col-sm-9">
 													<input type="text" class="form-control" name="datejoined"
 														id="datejoined" readonly value="<?=  date("l",strtotime($user['date_joined'])); ?>, <?= $user['date_joined']; ?>">

@@ -53,6 +53,7 @@
 		});
 		$('#note').css('display', 'none');
 	});
+	
 	$('#password').on('keyup', function(){
 		var password = $(this).val()
 		if(password.length < 4){

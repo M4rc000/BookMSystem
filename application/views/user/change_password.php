@@ -21,8 +21,11 @@
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Password</label>
 												<div class="col-sm-9">
-													<input type="password" class="form-control" name="old_password" id="old_password"
-														placeholder="old password" value="">
+													<div class="input-group mb-3">
+														<input type="password" class="form-control" name="old_password" id="old_password"
+															placeholder="old password" value="<?=$user['password'];?>">
+														<span class="mdi mdi-eye-off pl-2 pr-2" id="toggle-old-password" style="cursor: pointer; font-size: 20px; border: 1px solid #e6e7e8; border-radius: 0 2px 2px 0; background-color: whitesmoke; padding-top: 13px"></span>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -32,8 +35,11 @@
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">New Password</label>
 												<div class="col-sm-9">
-													<input type="password" class="form-control" name="new_password" id="new_password"
-														placeholder="new password">
+												<div class="input-group mb-3">
+														<input type="password" class="form-control" name="new_password" id="new_password"
+															placeholder="New password" required>
+														<span class="mdi mdi-eye-off pl-2 pr-2" id="toggle-new-password" style="cursor: pointer; font-size: 20px; border: 1px solid #e6e7e8; border-radius: 0 2px 2px 0; background-color: whitesmoke; padding-top: 13px"></span>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -50,3 +56,33 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function () {
+		$("#toggle-old-password").click(function () {
+			var passwordInput = $("#old_password");
+			var icon = $(this);
+
+			if (passwordInput.attr("type") === "password") {
+				passwordInput.attr("type", "text");
+				icon.removeClass("mdi-eye-off").addClass("mdi-eye");
+			} else {
+				passwordInput.attr("type", "password");
+				icon.removeClass("mdi-eye").addClass("mdi-eye-off");
+			}
+		});
+
+		$("#toggle-new-password").click(function () {
+			var passwordInput = $("#new_password");
+			var icon = $(this);
+
+			if (passwordInput.attr("type") === "password") {
+				passwordInput.attr("type", "text");
+				icon.removeClass("mdi-eye-off").addClass("mdi-eye");
+			} else {
+				passwordInput.attr("type", "password");
+				icon.removeClass("mdi-eye").addClass("mdi-eye-off");
+			}
+		});
+	});
+</script>

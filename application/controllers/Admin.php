@@ -119,35 +119,21 @@ class Admin extends CI_Controller {
         // MANAGE USER
         public function addUser() {
             $upload_image = $_FILES['img']['name'];
-            $username = $this->input->post('username');
                                 
             if ($upload_image) {
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
-                $config['max_size']      = '2048';
+                $config['max_size']      = '5048';
                 $config['upload_path']   = './assets/images/profile/';
 
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('img')) {  
                     $old_image = $data['user']['image'];  
-                
                     if ($old_image != 'default.webp') {
                         unlink(FCPATH . './assets/images/profile/' . $old_image);
-                    }
-                
+                    }                
                     $new_image = $this->upload->data('file_name');
-                    $data['img'] = $new_image;  
-                
-                    // Create a new folder if it doesn't exist
-                    $folderPath = FCPATH . './assets/images/profile/' . $username;
-                    if (!is_dir($folderPath)) {
-                        mkdir($folderPath, 0777, true);
-                    }
-                
-                    // Move the uploaded image to the new folder
-                    $newImagePath = $folderPath . '/' . $new_image;
-                    rename(FCPATH . './assets/images/profile/' . $new_image, $newImagePath);
-                
+                    $data['img'] = $new_image;                  
                 } else {
                     echo $this->upload->display_errors();
                 }            
@@ -164,7 +150,7 @@ class Admin extends CI_Controller {
                 'image' => $new_image,
                 'is_active' => $this->input->post('aktif'),
                 'token' => base64_encode(random_bytes(32)),
-                'date_joined' => date('d-m-Y H:i:s')
+                'date_joined' => date('d-m-Y H:i')
             );
 
             $this->AModel->insertData('user', $Data);
@@ -178,32 +164,31 @@ class Admin extends CI_Controller {
                 
             if ($upload_image) {
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
-                $config['max_size']      = '2048';
+                $config['max_size']      = '5048';
                 $config['upload_path']   = './assets/images/profile/';
-        
+
                 $this->load->library('upload', $config);
-        
+
                 if ($this->upload->do_upload('img')) {  
                     $old_image = $data['user']['image'];  
-        
                     if ($old_image != 'default.webp') {
                         unlink(FCPATH . './assets/images/profile/' . $old_image);
-                    }
-        
+                    }                
                     $new_image = $this->upload->data('file_name');
-                    $data['img'] = $new_image;  
+                    $data['img'] = $new_image;   
+
+                    $Data = array(
+                        'name' => $this->input->post('name'),
+                        'username' => $this->input->post('username'),
+                        'email' => $this->input->post('email'),
+                        'password' => $this->input->post('password'),
+                        'role_id' => $this->input->post('role'),
+                        'is_active' => $this->input->post('aktif'),
+                        'image' => $new_image
+                    );               
                 } else {
                     echo $this->upload->display_errors();
-                }
-                $Data = array(
-                    'name' => $this->input->post('name'),
-                    'username' => $this->input->post('username'),
-                    'email' => $this->input->post('email'),
-                    'password' => $this->input->post('password'),
-                    'role_id' => $this->input->post('role'),
-                    'image' => $new_image,
-                    'is_active' => $this->input->post('aktif')
-                );
+                }            
             }
             else{
                 $Data = array(

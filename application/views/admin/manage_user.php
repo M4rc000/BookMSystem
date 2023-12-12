@@ -40,7 +40,7 @@
 										<td class="text-center"><?= $u['role_id'] == 1 ? 'Administrator' : 'User' ?></td>
 										<td class="text-center"><?= $u['email']; ?></td>
 										<td class="text-center"><?= $u['is_active'] == 1 ? '<span class="mdi mdi-check-circle" style="font-size: 20px;  color: blue"></span>' : '<span class="mdi mdi-close-circle" style="font-size: 20px"></span>'; ?></td>
-										<td class="text-center"><?= $u['date_joined']; ?></td>
+										<td class="text-center"><?= date('d-m-Y h:i', strtotime($u['date_joined'])); ?></td>
 										<td class="text-center">
 											<a href="#" class="badge badge-success" data-bs-toggle="modal" data-bs-target="#EditModal<?= $u['id']; ?>"><i
 													class="mdi mdi-pencil"></i></a> 
@@ -195,16 +195,22 @@
 							</div>
 						</div>
 						<div class="row">
-						<div class="col-sm-4">
+							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="email">Email</label>
 									<input type="text" class="form-control" id="email" name="email" value="<?= $u['email']; ?>">
 								</div>
 							</div>
-							<div class="col-sm-4">
+							<div class="col-sm-2">
+								<div class="form-group">
+									<label for="date_joined">Date Joined</label>
+									<input type="text" class="form-control" name="date_joined" id="date_joined" value="<?=date("d-m-Y h:i", strtotime($u['date_joined']));?>" readonly>
+								</div>
+							</div>
+							<div class="col-sm-3">
 								<div class="form-group">
 									<label>File upload</label>
-									<input type="file" name="img[]" class="file-upload-default">
+									<input type="file" name="img" class="file-upload-default">
 									<div class="input-group col-xs-12">
 										<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
 										<span class="input-group-append">
@@ -213,7 +219,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-4 pt-2">
+							<div class="col-sm-2 pt-2">
 								<frame>
 									<div class="panel shadow" style="border: 1px solid #f5f7ff; border-radius: 15px; width: fit-content">
 										<img src="<?= base_url('assets'); ?>/images/profile/<?= $u['image']; ?>" alt="" width="200" height="90" style="border-radius: 15px">

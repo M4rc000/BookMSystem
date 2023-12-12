@@ -33,10 +33,9 @@ class User extends CI_Controller {
 	public function change_password()
 	{
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['countries'] = $this->db->get('countries')->result_array();
-        $data['menus'] = $this->uri->segment(1);
-        
         $data['title'] = 'Change Password';
+        $data['countries'] = $this->db->get('countries')->result_array();
+        $data['menus'] = $this->uri->segment(1); 
         
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');   
