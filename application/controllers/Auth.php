@@ -60,7 +60,7 @@ class Auth extends CI_Controller {
                     <span aria-hidden="true">&times;</span>
                     </button>
                     </div>');
-                    echo "password is wrong";
+                    // echo "password is wrong";
                     redirect('auth');
                 }
             } else {
@@ -70,7 +70,7 @@ class Auth extends CI_Controller {
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-                echo "username is wrong";
+                // echo "username is wrong";
                 redirect('auth');
             }
         } else {

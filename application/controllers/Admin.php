@@ -227,5 +227,100 @@ class Admin extends CI_Controller {
                 header("Location: " . base_url('admin/manage_user'));
             }
         }
-    
+        
+        // MANAGE USER ROLE
+        public function addUserRole() {
+            $id = $this->input->post('role_id');
+            $role = $this->input->post('role');
+
+            $Data = array(
+                'id' => $id,
+                'role' => $role,
+                'crtdt' => date('d-m-Y h:i'),
+                'crtby' => $this->input->post('crtby')
+            );
+
+            if($this->db->get_where('user_role', array('role' => $role, 'id' => $id))->num_rows() > 0){
+                $this->session->set_flashdata('DUPLICATES','<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Role is duplicates
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            }
+            else{
+                $this->session->set_flashdata('SUCCESS','<div class="alert alert-success alert-dismissible fade show" role="alert">
+                Data Role successfully added
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+                $this->AModel->insertData('user_role', $Data);
+            }
+            redirect('admin/manage_role');
+        }
+
+        public function editUserRole() {
+            $id = $this->input->post('id');
+            $upload_image = $_FILES['img']['name'];
+                
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
+                $config['max_size']      = '5048';
+                $config['upload_path']   = './assets/images/profile/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('img')) {  
+                    $old_image = $data['user']['image'];  
+                    if ($old_image != 'default.webp') {
+                        unlink(FCPATH . './assets/images/profile/' . $old_image);
+                    }                
+                    $new_image = $this->upload->data('file_name');
+                    $data['img'] = $new_image;   
+
+                    $Data = array(
+                        'name' => $this->input->post('name'),
+                        'username' => $this->input->post('username'),
+                        'email' => $this->input->post('email'),
+                        'password' => $this->input->post('password'),
+                        'role_id' => $this->input->post('role'),
+                        'is_active' => $this->input->post('aktif'),
+                        'image' => $new_image
+                    );               
+                } else {
+                    echo $this->upload->display_errors();
+                }            
+            }
+            else{
+                $Data = array(
+                    'name' => $this->input->post('name'),
+                    'username' => $this->input->post('username'),
+                    'email' => $this->input->post('email'),
+                    'password' => $this->input->post('password'),
+                    'role_id' => $this->input->post('role'),
+                    'is_active' => $this->input->post('aktif')
+                );
+            }
+                
+
+            $this->AModel->updateData('user', $id, $Data);
+            $_SESSION['message'] = 'edit';
+            redirect('admin/manage_user'); 
+        }
+
+        public function deleteUserRole() {
+            $this->load->model('Admin_model','AModel');
+        
+            $id = $this->input->post('id');
+            $this->AModel->deleteData('user_role', $id);
+
+            $this->session->set_flashdata('DELETED','<div class="alert alert-success alert-dismissible fade show" role="alert">
+                Role successfully deleted
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            header("Location: " . base_url('admin/manage_user'));       
+        }
 }
