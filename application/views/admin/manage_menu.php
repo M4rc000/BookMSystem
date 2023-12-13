@@ -155,6 +155,25 @@
 			lengthMenu: [
 				[10, 25, 50, -1],
 				[10, 25, 50, 'All']
+			],
+			dom: 'lBfrtip',
+			buttons: [
+				{
+                text: '<i class="fa fa-copy"></i>&nbsp;&nbsp;Copy',
+                extend: 'copy'
+				},
+				{
+					text: '<i class="fa fa-print"></i>&nbsp;&nbsp;Print',
+					extend: 'print'
+				},
+				{
+					text: '<i class="fa fa-file-pdf"></i>&nbsp;&nbsp;PDF',
+					extend: 'pdf'
+				},
+				{
+					text: '<i class="fa fa-file-excel"></i>&nbsp;&nbsp;Excel',
+					extend: 'excel',
+				},
 			]
 		});
 	})
