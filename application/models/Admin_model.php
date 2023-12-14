@@ -13,6 +13,35 @@ class Admin_model extends CI_Model {
        return $this->db->get_where('user')->result_array();
    }
 
+   public function getUsers() {
+        $months = range(1, 12);
+        $year = date('Y');
+        foreach ($months as $month) {
+            $start_date = date('Y-m-01', strtotime("$year-$month-01"));
+            $end_date = date('Y-m-t', strtotime("$year-$month-01"));
+
+            $this->db->where("date_joined BETWEEN '$start_date' AND '$end_date'");
+            $count = $this->db->count_all_results('user');    
+            $result[] = $count;
+        }
+        return $result;
+   }
+
+   public function getBooks() {
+        $months = range(1, 12);
+        $year = date('Y');
+        foreach ($months as $month) {
+            $start_date = date('Y-m-01', strtotime("$year-$month-01"));
+            $end_date = date('Y-m-t', strtotime("$year-$month-01"));
+
+            $this->db->where("crtdt BETWEEN '$start_date' AND '$end_date'");
+            $count = $this->db->count_all_results('books');    
+            $result[] = $count;
+        }
+        return $result;
+   }
+
+
    public function getAllRoles(){
        return $this->db->get('user_role')->result_array();
    }

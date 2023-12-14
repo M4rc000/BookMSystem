@@ -23,6 +23,8 @@ class Admin extends CI_Controller {
         $data['title'] = 'Dashboard';
         $data['menu'] = $this->uri->segment(1);
         $data['user'] = $this->AModel->getAllUsers();
+        $data['userDataChart'] = $this->AModel->getUsers();
+        $data['booksDataChart'] = $this->AModel->getBooks();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);   

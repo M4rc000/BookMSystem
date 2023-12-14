@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
 	<div class="row">
 		<div class="col-sm">
@@ -12,17 +11,17 @@
 		</div>
 	</div>
 	<br>
-	<div class="card shadow">
-		<div class="row justify-content-center">
-			<div class="col-md-5 grid-margin stretch-card text-center">
+	<div class="card shadow" style="width: 100%;">
+		<div class="row justify-content-center pl-2 pr-2">
+			<div class="col-md-6 grid-margin stretch-card text-center">
 				<div class="card mt-5" style="border: 2px solid grey;">
 					<div class="card-body">
 						<h4 class="card-title">Books chart</h4>
-						<canvas id="barChart"></canvas>
+						<canvas id="bookChart"></canvas>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-5 grid-margin stretch-card text-center">
+			<div class="col-md-6 grid-margin stretch-card text-center">
 				<div class="card mt-5" style="border: 2px solid grey;">
 					<div class="card-body">
 						<h4 class="card-title">User chart</h4>
@@ -121,6 +120,7 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 <script src="<?= base_url('assets');?>/vendors/chart.js/Chart.min.js"></script>
 <script>
@@ -135,57 +135,140 @@
 		]
 	});
 
-  	var data = {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+	var userDataChart = <?= json_encode($userDataChart); ?>;
+	var booksDataChart = <?= json_encode($booksDataChart); ?>;
+
+  	var dataUser = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul","Aug","Sep","Oct","Nov","Dec" ],
       datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Total User',
+          data: userDataChart,
           backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
           ],
           borderColor: [
-              'rgba(255,99,132,1)',
               'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
           ],
           borderWidth: 1
       }]
-  };
-  var options = {
-      scales: {
-          yAxes: [{
-              ticks: {
-                  beginAtZero:true
-              }
-          }]
-      },
-      legend: {
-          display: true
-      },
-      elements: {
-        point: {
-            radius: 0
-        }
-      }
+  	};	
 
-  };
+	var optionsUser = {
+		scales: {
+			yAxes: [{
+				ticks: {
+					beginAtZero:true,
+					stepSize: 1
+				}
+			}]
+		},
+		legend: {
+			display: true
+		},
+		elements: {
+			point: {
+				radius: 0
+			}
+		}
+		};
 
-  if($("#userChart").length) {
-    var lineChartCanvas = $("#userChart").get(0).getContext("2d");
-    var lineChart = new Chart(lineChartCanvas, {
-      type: 'bar',
-      data: data,
-      options: options
-    });
-  }
+  
+	if($("#userChart").length) {
+		var lineChartCanvas = $("#userChart").get(0).getContext("2d");
+		var lineChart = new Chart(lineChartCanvas, {
+		type: 'bar',
+		data: dataUser,
+		options: optionsUser
+		});
+	}
+
+
+	var dataBook = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul","Aug","Sep","Oct","Nov","Dec" ],
+      datasets: [{
+          label: 'Total Books',
+          data: booksDataChart,
+          backgroundColor: [
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+          ],
+          borderColor: [,
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
+          ],
+          borderWidth: 1
+      }]
+  	};	
+
+	var optionsBook = {
+		scales: {
+			yAxes: [{
+				ticks: {
+					beginAtZero:true,
+					stepSize: 1
+				}
+			}]
+		},
+		legend: {
+			display: true
+		},
+		elements: {
+			point: {
+				radius: 0
+			}
+		}
+	};
+
+	if($("#bookChart").length) {
+		var lineChartCanvasBook = $("#bookChart").get(0).getContext("2d");
+		var lineChart = new Chart(lineChartCanvasBook, {
+		type: 'bar',
+		data: dataBook,
+		options: optionsBook
+		});
+	}
 </script>
 
 
