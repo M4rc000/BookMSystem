@@ -323,6 +323,6 @@ class Admin extends CI_Controller {
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            header("Location: " . base_url('admin/manage_user'));       
+            header("Location: " . base_url('admin/manage_role'));       
         }
 }

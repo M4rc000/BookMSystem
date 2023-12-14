@@ -15,6 +15,15 @@
 		<div class="col-lg grid-margin stretch-card">
 			<div class="card shadow" style="border-left: 2px solid #ffc100;">
 				<div class="card-body">
+				<?php if ($this->session->flashdata('SUCCESS') != '') { ?>
+				<?= $this->session->flashdata('SUCCESS'); ?>
+				<?php } ?>
+				<?php if ($this->session->flashdata('DUPLICATES') != '') { ?>
+				<?= $this->session->flashdata('DUPLICATES'); ?>
+				<?php } ?>
+				<?php if ($this->session->flashdata('DELETED') != '') { ?>
+				<?= $this->session->flashdata('DELETED'); ?>
+				<?php } ?>
 				<h4 class="pt-2 pb-3 text-center"><strong>TABLE USER</strong></h4>
 				<button class="btn btn-primary ml-3 mb-3" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New User</span></button>
 					<div class="table-responsive py-3">

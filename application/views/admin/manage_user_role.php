@@ -66,7 +66,7 @@
 </div>
 
 
-<!-- CONFIG MODAL-->
+<!-- ADD MODAL-->
 <?php foreach($roles as $role) : ?>
 <div class="modal fade" id="ConfigModal<?= $role['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
 	aria-hidden="true" style="margin-top: -5rem">
@@ -127,7 +127,7 @@
 <?php endforeach; ?>
 
 
-<!-- ADD MODAL-->
+<!-- ADD MODAL
 <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
 	style="margin-top: -5rem">
 	<div class="modal-dialog">
@@ -165,7 +165,7 @@
 			</form>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <!-- EDIT MODAL-->
 <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -225,20 +225,24 @@
 </div>
 
 <!-- DELETE CONFIRM MODAL-->
+<?php foreach($roles as $role) : ?>
+<?= form_open_multipart('admin/deleteUserRole'); ?>
 <div class="modal fade" id="DeleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
 	style="margin-top: -5rem">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title pb-0 mb-0" id="exampleModalLabel">Confirm to delete ?</h4>
+				<input type="text" name="id" id="id" value="<?= $role['id']; ?>" style="display: none;">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary">Confirm</button>
+				<button type="submit" class="btn btn-primary">Confirm</button>
 			</div>
 		</div>
 	</div>
 </div>
+<?php endforeach; ?>
 
 
 <script>
