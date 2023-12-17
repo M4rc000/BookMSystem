@@ -24,6 +24,12 @@
 				<?php if ($this->session->flashdata('DELETED') != '') { ?>
 				<?= $this->session->flashdata('DELETED'); ?>
 				<?php } ?>
+				<?php if ($this->session->flashdata('EDIT') != '') { ?>
+				<?= $this->session->flashdata('EDIT'); ?>
+				<?php } ?>
+				<?php if ($this->session->flashdata('ERROR') != '') { ?>
+				<?= $this->session->flashdata('ERROR'); ?>
+				<?php } ?>
 				<h4 class="pt-2 pb-3 text-center"><strong>TABLE USER</strong></h4>
 				<button class="btn btn-primary ml-3 mb-3" data-bs-toggle="modal" data-bs-target="#AddModal"><i class="ti-plus pt-5" style="font-size: small;"></i><span class="pl-3">New User</span></button>
 					<div class="table-responsive py-3">
@@ -49,7 +55,7 @@
 										<td class="text-center"><?= $u['role_id'] == 1 ? 'Administrator' : 'User' ?></td>
 										<td class="text-center"><?= $u['email']; ?></td>
 										<td class="text-center"><?= $u['is_active'] == 1 ? '<span class="mdi mdi-check-circle" style="font-size: 20px;  color: blue"></span>' : '<span class="mdi mdi-close-circle" style="font-size: 20px"></span>'; ?></td>
-										<td class="text-center"><?= date('d-m-Y h:i', strtotime($u['date_joined'])); ?></td>
+										<td class="text-center"><?= date('d-m-Y H:i', strtotime($u['date_joined'])); ?></td>
 										<td class="text-center">
 											<a href="#" class="badge badge-success" data-bs-toggle="modal" data-bs-target="#EditModal<?= $u['id']; ?>"><i
 													class="mdi mdi-pencil"></i></a> 
@@ -220,7 +226,7 @@
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label>File upload</label>
-									<input type="file" name="img" class="file-upload-default">
+									<input type="file" name="img" accept=".jpg, .jpeg, .png, .webp" class="file-upload-default" id="file-images<?= $u['id']; ?>" onchange="showPreviews('<?= $u['id']; ?>')">
 									<div class="input-group col-xs-12">
 										<input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
 										<span class="input-group-append">
@@ -230,11 +236,9 @@
 								</div>
 							</div>
 							<div class="col-sm-2 pt-2">
-								<frame>
-									<div class="panel shadow" style="border: 1px solid #f5f7ff; border-radius: 15px; width: fit-content">
-										<img src="<?= base_url('assets'); ?>/images/profile/<?= $u['image']; ?>" alt="" width="200" height="90" style="border-radius: 15px">
-									</div>
-								</frame>
+								<div class="panel shadow" style="border: 1px solid #f5f7ff; border-radius: 15px; width: fit-content">
+								<img src="<?= base_url('assets'); ?>/images/profile/<?= $u['image']; ?>" id="image-previews<?= $u['id']; ?>" width="200" height="90" style="border-radius: 15px">
+								</div>
 							</div>
 						</div>
 				</div>
@@ -321,7 +325,8 @@
 
 	function showPreview() {
 		var input = $('#file-image');
-		var files = input[0].files; 
+		var files = input[0].files;
+
 		if (files.length > 0) {
 			const fileReader = new FileReader();
 			const preview = $('#image-preview');
@@ -331,5 +336,28 @@
 			fileReader.readAsDataURL(files[0]);
 		}
 	};
+
+	function showPreviews(userId) {
+		var input = $('#file-images' + userId);
+
+		if (!input || !input[0] || !input[0].files) {
+			console.error('File input or files not found.');
+			return;
+		}
+
+		var files = input[0].files;
+
+		if (files.length > 0) {
+			const fileReader = new FileReader();
+			const preview = $('#image-previews' + userId);
+
+			fileReader.onload = event => {
+				preview.attr('src', event.target.result);
+			}
+
+			fileReader.readAsDataURL(files[0]);
+		}
+	};
+
 </script>
 
